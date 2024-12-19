@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "lucky_charm:item/four_leaf_clover"
+  }
+}

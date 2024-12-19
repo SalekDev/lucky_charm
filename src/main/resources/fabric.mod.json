@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "lucky_charm",
+	"version": "${version}",
+	"name": "Lucky Charm Mod",
+	"description": "A mod that vamps the luck mechanic in minecraft",
+	"authors": [
+		"SalekDev"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/lucky_charm/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+          "salek664.lucky_charm.LuckyCharm"
+		],
+		"client": [
+			"salek664.lucky_charm.LuckyCharmClient"
+		],
+		"fabric-datagen": [
+			"salek664.lucky_charm.LuckyCharmDataGenerator"
+		]
+	},
+	"mixins": [
+		"lucky_charm.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.5",
+		"minecraft": "~1.20.6",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

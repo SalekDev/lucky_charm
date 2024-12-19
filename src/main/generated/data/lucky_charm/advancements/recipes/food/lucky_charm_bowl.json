@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_four_leaf_clover": {
+      "conditions": {
+        "items": [
+          {
+            "items": "lucky_charm:four_leaf_clover"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_sugar": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:sugar"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "lucky_charm:lucky_charm_bowl"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_four_leaf_clover",
+      "has_sugar"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "lucky_charm:lucky_charm_bowl"
+    ]
+  }
+}

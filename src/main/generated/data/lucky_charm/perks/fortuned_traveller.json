@@ -1,0 +1,12 @@
+{
+  "attribute_modifier": {
+    "modified_attribute": "minecraft:generic.luck",
+    "name": "Fortuned Traveller",
+    "operation": "add_value",
+    "value": 1.0
+  },
+  "name": {
+    "color": "dark_green",
+    "translate": "perk.lucky_charm.fortuned_traveller"
+  }
+}

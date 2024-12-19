@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "salek664.lucky_charm.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ItemStackMixin",
+    "LeafEntryAccessor",
+    "LootPool$BuilderMixin",
+    "LootPoolMixin",
+    "SmithingTemplateItemAccessor",
+    "WitchEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "plugin": "salek664.lucky_charm.config.LootMixinDisabler"
+}

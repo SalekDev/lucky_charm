@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "lucky_charm:item/lucky_charm_bowl"
+  }
+}

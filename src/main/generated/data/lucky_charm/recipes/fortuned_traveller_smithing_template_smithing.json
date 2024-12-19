@@ -1,0 +1,12 @@
+{
+  "type": "lucky_charm:perk_trim",
+  "addition": {
+    "item": "lucky_charm:fortune_gem"
+  },
+  "base": {
+    "tag": "minecraft:trimmable_armor"
+  },
+  "template": {
+    "item": "lucky_charm:fortuned_traveller_smithing_template"
+  }
+}
