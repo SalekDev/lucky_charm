@@ -3,6 +3,7 @@
   "package": "salek664.lucky_charm.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "ElderGuardianMixin",
     "ItemStackMixin",
     "LeafEntryAccessor",
     "LootPool$BuilderMixin",
@@ -13,5 +14,5 @@
   "injectors": {
     "defaultRequire": 1
   },
-  "plugin": "salek664.lucky_charm.config.LootMixinDisabler"
+  "plugin": "salek664.lucky_charm.config.LuckyCharmConfigReader"
 }

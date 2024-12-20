@@ -1,4 +1,4 @@
-package salek664.lucky_charm.loot.nonHyperModifiers;
+package salek664.lucky_charm.loot.non_hyper;
 
 import net.fabricmc.fabric.api.loot.v2.LootTableSource;
 import net.minecraft.block.Blocks;
@@ -23,8 +23,8 @@ import net.minecraft.text.Text;
 import java.util.Optional;
 
 public class LuckyCharmChestLootTableModifiers {
-    public static Optional<LootTable> attemptReplace(RegistryKey<LootTable> key, LootTableSource source) {
-        if (source.isBuiltin()) {
+    public static Optional<LootTable> attemptReplace(RegistryKey<LootTable> key, LootTableSource source, boolean enabled) {
+        if (enabled && source.isBuiltin()) {
             if (LootTables.ABANDONED_MINESHAFT_CHEST == key) {
                 return Optional.of(abandonedMineshaftChest());
             } else if (LootTables.BASTION_BRIDGE_CHEST == key) {

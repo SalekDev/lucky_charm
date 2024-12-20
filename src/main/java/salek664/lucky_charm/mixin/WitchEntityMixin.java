@@ -21,7 +21,10 @@ public abstract class WitchEntityMixin extends RaiderEntity implements RangedAtt
     protected WitchEntityMixin(EntityType<? extends RaiderEntity> entityType, World world) {
         super(entityType, world);
     }
-    @ModifyVariable(method = "shootAt", at = @At(value = "STORE", ordinal = 3))
+    @ModifyVariable(
+            method = "shootAt",
+            at = @At(value = "STORE", ordinal = 3)
+    )
     private RegistryEntry<Potion> addUnluckPotionAttack(RegistryEntry<Potion> registryEntry, LivingEntity target, float pullProgress) {
         double targetLuck = target.getAttributeValue(EntityAttributes.GENERIC_LUCK);
         if (target.getRandom().nextFloat() < 0.5f && !target.hasStatusEffect(StatusEffects.UNLUCK)) {

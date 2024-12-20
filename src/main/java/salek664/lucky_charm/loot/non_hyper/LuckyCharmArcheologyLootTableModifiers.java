@@ -1,4 +1,4 @@
-package salek664.lucky_charm.loot.nonHyperModifiers;
+package salek664.lucky_charm.loot.non_hyper;
 
 import net.fabricmc.fabric.api.loot.v2.LootTableSource;
 import net.minecraft.entity.effect.StatusEffects;
@@ -7,16 +7,18 @@ import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTables;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.entry.LootTableEntry;
 import net.minecraft.loot.function.SetStewEffectLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.registry.RegistryKey;
+import salek664.lucky_charm.item.LuckyCharmItems;
 
 import java.util.Optional;
-
+//TODO redo nonHyper modifiers properly with loot table splitting like the fishing rod
 public class LuckyCharmArcheologyLootTableModifiers {
-    public static Optional<LootTable> attemptReplace(RegistryKey<LootTable> key, LootTableSource source) {
-        if (source.isBuiltin()) {
+    public static Optional<LootTable> attemptReplace(RegistryKey<LootTable> key, LootTableSource source, boolean enabled) {
+        if (enabled && source.isBuiltin()) {
             if (LootTables.DESERT_WELL_ARCHAEOLOGY == key) {
                 return Optional.of(desertWellArchaeology());
             } else if (LootTables.DESERT_PYRAMID_ARCHAEOLOGY == key) {
@@ -106,61 +108,90 @@ public class LuckyCharmArcheologyLootTableModifiers {
                                 .with(ItemEntry.builder(Items.BEETROOT_SEEDS).quality(0))
                                 .with(ItemEntry.builder(Items.DEAD_BUSH).quality(0))
                                 .with(ItemEntry.builder(Items.FLOWER_POT).quality(1))
-                                .with(ItemEntry.builder(Items.STRING).quality(1))
-                                .with(ItemEntry.builder(Items.LEAD).quality(1))
+                                .with(ItemEntry.builder(Items.STRING))
+                                .with(ItemEntry.builder(Items.LEAD))
                 ).build();
     }
     private static LootTable trailRuinsRareArchaeology() {
-        return LootTable.builder()
-                .pool(
-                        LootPool.builder()
-                                .rolls(ConstantLootNumberProvider.create(1.0F))
-                                .with(ItemEntry.builder(Items.BURN_POTTERY_SHERD).quality(1))
-                                .with(ItemEntry.builder(Items.DANGER_POTTERY_SHERD).quality(1))
-                                .with(ItemEntry.builder(Items.FRIEND_POTTERY_SHERD).quality(1))
-                                .with(ItemEntry.builder(Items.HEART_POTTERY_SHERD).quality(1))
-                                .with(ItemEntry.builder(Items.HEARTBREAK_POTTERY_SHERD).quality(1))
-                                .with(ItemEntry.builder(Items.HOWL_POTTERY_SHERD).quality(1))
-                                .with(ItemEntry.builder(Items.SHEAF_POTTERY_SHERD).quality(1))
-                                .with(ItemEntry.builder(Items.WAYFINDER_ARMOR_TRIM_SMITHING_TEMPLATE).quality(4))
-                                .with(ItemEntry.builder(Items.RAISER_ARMOR_TRIM_SMITHING_TEMPLATE).quality(4))
-                                .with(ItemEntry.builder(Items.SHAPER_ARMOR_TRIM_SMITHING_TEMPLATE).quality(4))
-                                .with(ItemEntry.builder(Items.HOST_ARMOR_TRIM_SMITHING_TEMPLATE).quality(4))
-                                .with(ItemEntry.builder(Items.MUSIC_DISC_RELIC).quality(2))
-                ).build();
+        LootTable treasure = LootTable.builder().pool(
+                LootPool.builder()
+                        .with(ItemEntry.builder(Items.WAYFINDER_ARMOR_TRIM_SMITHING_TEMPLATE).weight(3))
+                        .with(ItemEntry.builder(Items.RAISER_ARMOR_TRIM_SMITHING_TEMPLATE).weight(3))
+                        .with(ItemEntry.builder(Items.SHAPER_ARMOR_TRIM_SMITHING_TEMPLATE).weight(3))
+                        .with(ItemEntry.builder(Items.HOST_ARMOR_TRIM_SMITHING_TEMPLATE).weight(3))
+                        .with(ItemEntry.builder(Items.MUSIC_DISC_RELIC).weight(3))
+                        .with(ItemEntry.builder(LuckyCharmItems.FORTUNE_GEM).quality(1))
+        ).build();
+        LootTable common = LootTable.builder().pool(
+                LootPool.builder()
+                        .with(ItemEntry.builder(Items.BURN_POTTERY_SHERD))
+                        .with(ItemEntry.builder(Items.DANGER_POTTERY_SHERD))
+                        .with(ItemEntry.builder(Items.FRIEND_POTTERY_SHERD))
+                        .with(ItemEntry.builder(Items.HEART_POTTERY_SHERD))
+                        .with(ItemEntry.builder(Items.HEARTBREAK_POTTERY_SHERD))
+                        .with(ItemEntry.builder(Items.HOWL_POTTERY_SHERD))
+                        .with(ItemEntry.builder(Items.SHEAF_POTTERY_SHERD))
+        ).build();
+        return LootTable.builder().pool(
+                LootPool.builder()
+                        .with(LootTableEntry.builder(treasure).weight(10).quality(1))
+                        .with(LootTableEntry.builder(common).weight(14).quality(-1))
+        ).build();
     }
     private static LootTable oceanRuinWarmArchaeology() {
-        return LootTable.builder()
-                .pool(
-                        LootPool.builder()
-                                .rolls(ConstantLootNumberProvider.create(1.0F))
-                                .with(ItemEntry.builder(Items.ANGLER_POTTERY_SHERD).quality(2))
-                                .with(ItemEntry.builder(Items.SHELTER_POTTERY_SHERD).quality(2))
-                                .with(ItemEntry.builder(Items.SNORT_POTTERY_SHERD).quality(2))
-                                .with(ItemEntry.builder(Items.SNIFFER_EGG).quality(4))
-                                .with(ItemEntry.builder(Items.IRON_AXE).quality(2))
-                                .with(ItemEntry.builder(Items.EMERALD).weight(2).quality(4))
-                                .with(ItemEntry.builder(Items.WHEAT).weight(2).quality(0))
-                                .with(ItemEntry.builder(Items.WOODEN_HOE).weight(2).quality(0))
-                                .with(ItemEntry.builder(Items.COAL).weight(2).quality(1))
-                                .with(ItemEntry.builder(Items.GOLD_NUGGET).weight(2).quality(3))
-                ).build();
+        LootTable treasure = LootTable.builder().pool(
+                LootPool.builder()
+                        .with(ItemEntry.builder(Items.SNIFFER_EGG).weight(2))
+                        .with(ItemEntry.builder(Items.GOLD_NUGGET).weight(4))
+                        .with(ItemEntry.builder(Items.EMERALD).weight(4))
+                        .with(ItemEntry.builder(LuckyCharmItems.FORTUNE_GEM).quality(1))
+        ).build();
+        LootTable common = LootTable.builder().pool(
+                LootPool.builder()
+                        .with(ItemEntry.builder(Items.IRON_AXE))
+                        .with(ItemEntry.builder(Items.ANGLER_POTTERY_SHERD))
+                        .with(ItemEntry.builder(Items.SHELTER_POTTERY_SHERD))
+                        .with(ItemEntry.builder(Items.SNORT_POTTERY_SHERD))
+        ).build();
+        LootTable junk = LootTable.builder().pool(
+                LootPool.builder()
+                        .with(ItemEntry.builder(Items.WHEAT))
+                        .with(ItemEntry.builder(Items.WOODEN_HOE))
+                        .with(ItemEntry.builder(Items.COAL))
+        ).build();
+        return LootTable.builder().pool(
+                LootPool.builder()
+                        .with(LootTableEntry.builder(treasure).weight(15).quality(1))
+                        .with(LootTableEntry.builder(common).weight(12).quality(-1))
+                        .with(LootTableEntry.builder(junk).weight(9).quality(-1))
+        ).build();
     }
     private static LootTable oceanRuinColdArchaeology() {
-        return LootTable.builder()
-                .pool(
-                        LootPool.builder()
-                                .rolls(ConstantLootNumberProvider.create(1.0F))
-                                .with(ItemEntry.builder(Items.BLADE_POTTERY_SHERD).quality(2))
-                                .with(ItemEntry.builder(Items.EXPLORER_POTTERY_SHERD).quality(2))
-                                .with(ItemEntry.builder(Items.MOURNER_POTTERY_SHERD).quality(2))
-                                .with(ItemEntry.builder(Items.PLENTY_POTTERY_SHERD).quality(2))
-                                .with(ItemEntry.builder(Items.IRON_AXE).quality(2))
-                                .with(ItemEntry.builder(Items.EMERALD).weight(2).quality(4))
-                                .with(ItemEntry.builder(Items.WHEAT).weight(2).quality(0))
-                                .with(ItemEntry.builder(Items.WOODEN_HOE).weight(2).quality(0))
-                                .with(ItemEntry.builder(Items.COAL).weight(2).quality(1))
-                                .with(ItemEntry.builder(Items.GOLD_NUGGET).weight(2).quality(3))
-                ).build();
+        LootTable treasure = LootTable.builder().pool(
+                LootPool.builder()
+                        .with(ItemEntry.builder(Items.EMERALD).weight(4))
+                        .with(ItemEntry.builder(Items.GOLD_NUGGET).weight(4))
+                        .with(ItemEntry.builder(LuckyCharmItems.FORTUNE_GEM).quality(1))
+        ).build();
+        LootTable common = LootTable.builder().pool(
+                LootPool.builder()
+                        .with(ItemEntry.builder(Items.BLADE_POTTERY_SHERD))
+                        .with(ItemEntry.builder(Items.EXPLORER_POTTERY_SHERD))
+                        .with(ItemEntry.builder(Items.MOURNER_POTTERY_SHERD))
+                        .with(ItemEntry.builder(Items.PLENTY_POTTERY_SHERD))
+                        .with(ItemEntry.builder(Items.IRON_AXE))
+        ).build();
+        LootTable junk = LootTable.builder().pool(
+                LootPool.builder()
+                        .with(ItemEntry.builder(Items.WHEAT))
+                        .with(ItemEntry.builder(Items.WOODEN_HOE))
+                        .with(ItemEntry.builder(Items.COAL))
+        ).build();
+        return LootTable.builder().pool(
+                LootPool.builder()
+                        .with(LootTableEntry.builder(treasure).weight(6).quality(1))
+                        .with(LootTableEntry.builder(common).weight(15).quality(-1))
+                        .with(LootTableEntry.builder(junk).weight(9).quality(-1))
+        ).build();
     }
 }

@@ -5,9 +5,9 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.Share;
-import com.llamalad7.mixinextras.sugar.ref.LocalByteRef;
 import com.llamalad7.mixinextras.sugar.ref.LocalFloatRef;
 import com.llamalad7.mixinextras.sugar.ref.LocalIntRef;
+import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import com.mojang.datafixers.util.Either;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
@@ -25,7 +25,6 @@ import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Desc;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -33,7 +32,6 @@ import salek664.lucky_charm.LuckyCharm;
 import salek664.lucky_charm.loot.math.HyperLootMath;
 import salek664.lucky_charm.util.HyperLootPoolDuck;
 
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
@@ -186,29 +184,45 @@ public abstract class LootPoolMixin implements HyperLootPoolDuck {
     public float kScalingFactor(float luckExpectedValue, float luck) {
         float v1 = weightSum != 0 ? (float) qualDotWeight / weightSum : 0;
         float dotProduct = luck > 0 ? qualDotDeltaPositive : ((luck < 0) ? qualDotDeltaNegative : 0);
-        HyperLootMath.sanityCheck(dotProduct);
         return dotProduct != 0 ? (luckExpectedValue - v1) / dotProduct : 0;
+    }
+    @Unique
+    private int calculateNewWeight(float luck, int prevWeight, int counter, float kFactor) {
+        if (luck != 0 && positiveDelta != null && negativeDelta != null) {
+            float delta = 0;
+            if (luck > 0 && positiveDelta.size() > counter) {
+                delta = positiveDelta.getFloat(counter);
+            } else if (luck < 0 && negativeDelta.size() > counter) {
+                delta = negativeDelta.getFloat(counter);
+            }
+            //LuckyCharm.LOGGER.info("Delta (" + counter + "): " + delta);
+            double newProb = weightSum != 0 ? (double) prevWeight / weightSum + kFactor * delta : 0;
+            newProb = Math.clamp(newProb, 0, 1);
+            //LuckyCharm.LOGGER.info("New Prob: " + newProb);
+            return (int) Math.floor(newProb * 100);
+        }
+        return prevWeight;
     }
     @Inject(
             method = "supplyOnce(Ljava/util/function/Consumer;Lnet/minecraft/loot/context/LootContext;)V",
             at = @At("HEAD")
     )
-    private void saveVariablesForCalculations(Consumer<ItemStack> consumer, LootContext context, CallbackInfo ci,
+    private void initializeVariablesForCalculations(Consumer<ItemStack> consumer, LootContext context, CallbackInfo ci,
                                               @Share("kFactor") LocalFloatRef kFactorRef,
                                               @Share("counterForWeightCalculation") LocalIntRef counterRef,
                                               @Share("counterForLootGeneration") LocalIntRef generationCounterRef,
-                                              @Share("luck") LocalFloatRef luckRef) {
+                                              @Share("weightsListForLootGeneration") LocalRef<IntArrayList> weightsListRef) {
         float luck = context.getLuck();
-        luckRef.set(luck);
         float eV = luckExpectedValue(luck);
         kFactorRef.set(kScalingFactor(eV, luck));
+        counterRef.set(-1);
+        generationCounterRef.set(-1);
+        weightsListRef.set(IntArrayList.of());
         //LuckyCharm.LOGGER.info("Luck ev: " + eV);
         //LuckyCharm.LOGGER.info("Luck delta: " + ((luck > 0) ? positiveDelta : ((luck < 0) ? negativeDelta : 0)));
         //LuckyCharm.LOGGER.info("Qual dot delta: " + ((luck > 0) ? qualDotDeltaPositive : ((luck < 0) ? qualDotDeltaNegative : 0)));
         //LuckyCharm.LOGGER.info("Qual dot weight: " + qualDotWeight);
         //LuckyCharm.LOGGER.info("delta scaling factor: " + kFactorRef.get());
-        counterRef.set(-1);
-        generationCounterRef.set(-1);
     }
     @ModifyVariable(
             method = "supplyOnce(Ljava/util/function/Consumer;Lnet/minecraft/loot/context/LootContext;)V",
@@ -227,6 +241,7 @@ public abstract class LootPoolMixin implements HyperLootPoolDuck {
     private boolean modifyExpand(LootPoolEntry instance, LootContext context, Consumer<LootChoice> lootConsumer, Operation<Boolean> original,
                                  @Share("kFactor") LocalFloatRef kFactorRef,
                                  @Share("counterForWeightCalculation") LocalIntRef counterRef,
+                                 @Share("weightsListForLootGeneration") LocalRef<IntArrayList> weightsListRef,
                                  @Local List<LootChoice> list,
                                  @Local MutableInt mutableInt) {
         return instance.expand(context, choice -> {
@@ -235,6 +250,7 @@ public abstract class LootPoolMixin implements HyperLootPoolDuck {
             if (newWeight > 0) {
                 list.add(choice);
                 mutableInt.add(newWeight);
+                weightsListRef.get().add(newWeight);
             }
         });
     }
@@ -254,24 +270,10 @@ public abstract class LootPoolMixin implements HyperLootPoolDuck {
     )
     private int modifyWeight(LootChoice lootChoice, float luck, Operation<Integer> original,
                              @Share("kFactor") LocalFloatRef kFactorRef,
-                             @Share("counterForLootGeneration") LocalIntRef counterRef) {
-        return calculateNewWeight(luck, original.call(lootChoice, 0F), counterRef.get(), kFactorRef.get());
-    }
-    @Unique
-    private int calculateNewWeight(float luck, int prevWeight, int counter, float kFactor) {
-        if (luck != 0 && positiveDelta != null && negativeDelta != null) {
-            float delta = 0;
-            if (luck > 0 && positiveDelta.size() > counter) {
-                delta = positiveDelta.getFloat(counter);
-            } else if (luck < 0 && negativeDelta.size() > counter) {
-                delta = negativeDelta.getFloat(counter);
-            }
-            //LuckyCharm.LOGGER.info("Delta (" + counter + "): " + delta);
-            double newProb = weightSum != 0 ? (double) prevWeight / weightSum + kFactor * delta : 0;
-            newProb = Math.clamp(newProb, 0, 1);
-            //LuckyCharm.LOGGER.info("New Prob: " + newProb);
-            return (int) Math.floor(newProb * 100);
-        }
-        return prevWeight;
+                             @Share("counterForLootGeneration") LocalIntRef counterRef,
+                             @Share("weightsListForLootGeneration") LocalRef<IntArrayList> weightsListRef) {
+        IntArrayList weightsList = weightsListRef.get();
+        int i = counterRef.get();
+        return weightsList.size() > i ? weightsList.getInt(i) : original.call(lootChoice, 0F);
     }
 }

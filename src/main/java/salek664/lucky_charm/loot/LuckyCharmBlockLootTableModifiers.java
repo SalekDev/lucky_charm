@@ -1,11 +1,10 @@
-package salek664.lucky_charm.loot.nonHyperModifiers;
+package salek664.lucky_charm.loot;
 
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.block.Blocks;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import salek664.lucky_charm.item.LuckyCharmItems;
 
 public class LuckyCharmBlockLootTableModifiers {

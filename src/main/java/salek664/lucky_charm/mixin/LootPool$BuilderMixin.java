@@ -10,7 +10,6 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import salek664.lucky_charm.config.LootMixinDisabler;
 import salek664.lucky_charm.util.HyperLootPoolDuck;
 
 @Mixin(LootPool.Builder.class)
@@ -34,9 +33,7 @@ public abstract class LootPool$BuilderMixin {
     @Unique
     private int weightSum;
     @Unique
-    private boolean positiveQualityExists = false;
-    @Unique
-    private boolean negativeQualityExists = false;
+    private boolean nonZeroQualityExists = false;
     @Inject(
             method = "with",
             at = @At("RETURN")
@@ -55,9 +52,9 @@ public abstract class LootPool$BuilderMixin {
             qualDotDeltaNegative = qualDotDeltaPositive;
             maxQuality = Math.max(maxQuality, quality);
             minQuality = Math.min(minQuality, quality);
-            if (quality < 0) {
-                negativeQualityExists = true;
-            } else if (quality > 0) positiveQualityExists = true;
+            if (quality != 0) {
+                nonZeroQualityExists = true;
+            }
         } else {
             qualities.add(0);
         }
@@ -67,7 +64,7 @@ public abstract class LootPool$BuilderMixin {
             at = @At("RETURN")
     )
     private LootPool modifyBuild(LootPool original) {
-        if (!negativeQualityExists && positiveQualityExists && LootMixinDisabler.doHyperLoot) {
+        if (nonZeroQualityExists) {
             qualDotDeltaPositive /= weightSum; qualDotDeltaNegative = qualDotDeltaPositive;
             int maxCount = 0, minCount = 0;
             IntArrayList positiveIndices = IntArrayList.of(), negativeIndices = IntArrayList.of();

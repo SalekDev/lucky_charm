@@ -12,7 +12,7 @@ public class LuckyCharmDataGenerator implements DataGeneratorEntrypoint {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
 		pack.addProvider(LuckyCharmModelProvider::new);
-		pack.addProvider(LuckyCharmLootTableProvider::new);
+		pack.addProvider(LuckyCharmChestLootTableDataPackProvider::new);
 		pack.addProvider(LuckyCharmBlockTagProvider::new);
 		pack.addProvider(LuckyCharmItemTagProvider::new);
 		pack.addProvider(LuckyCharmRecipeProvider::new);
