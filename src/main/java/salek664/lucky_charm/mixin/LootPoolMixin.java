@@ -28,8 +28,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import salek664.lucky_charm.LuckyCharm;
-import salek664.lucky_charm.loot.math.HyperLootMath;
 import salek664.lucky_charm.util.HyperLootPoolDuck;
 
 import java.util.Iterator;
