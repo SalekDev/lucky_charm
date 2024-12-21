@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "lucky_loot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "lucky_charm:four_leaf_clover"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.lucky_charm.adventure.four_leaf.description"
+    },
+    "frame": "task",
+    "icon": {
+      "count": 1,
+      "id": "lucky_charm:four_leaf_clover"
+    },
+    "title": {
+      "translate": "advancements.lucky_charm.adventure.four_leaf.title"
+    }
+  },
+  "requirements": [
+    [
+      "clover"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
