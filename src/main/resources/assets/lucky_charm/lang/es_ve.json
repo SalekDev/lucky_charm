@@ -14,6 +14,8 @@
 
   "perk.lucky_charm.fortuned_traveller": "Viajero Afortunado",
 
+  "advancements.lucky_charm.adventure.four_leaf.title": "Trébol de cuatro hojas",
+  "advancements.lucky_charm.adventure.four_leaf.description": "Consigue un trébol de cuatro hojas",
   "item.minecraft.lingering_potion.effect.unluck": "Poción de mala suerte persistente",
   "item.minecraft.splash_potion.effect.unluck": "Poción de mala suerte arrojadiza",
   "item.minecraft.potion.effect.unluck": "Poción de mala suerte",

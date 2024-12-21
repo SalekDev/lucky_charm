@@ -133,7 +133,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(2.0F, 4.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.3f))
                                 .with(ItemEntry.builder(Items.IRON_INGOT).weight(10).quality(3).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 5.0F))))
                                 .with(ItemEntry.builder(Items.GOLD_INGOT).weight(5).quality(4).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.REDSTONE).weight(5).quality(3).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(4.0F, 9.0F))))
@@ -166,7 +165,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(1.0F, 2.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.2f))
                                 .with(
                                         ItemEntry.builder(Items.CROSSBOW)
                                                 .apply(SetDamageLootFunction.builder(UniformLootNumberProvider.create(0.1F, 0.5F)))
@@ -263,7 +261,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(3.0F, 4.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.2f))
                                 .with(
                                         ItemEntry.builder(Items.GOLDEN_AXE)
                                                 .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)))
@@ -327,7 +324,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(ConstantLootNumberProvider.create(2.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.2f))
                                 .with(
                                         ItemEntry.builder(Items.IRON_SWORD)
                                                 .weight(2).quality(3)
@@ -391,7 +387,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(ConstantLootNumberProvider.create(3.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.17f))
                                 .with(ItemEntry.builder(Items.NETHERITE_INGOT).weight(15).quality(8).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))))
                                 .with(ItemEntry.builder(Blocks.ANCIENT_DEBRIS).weight(10).quality(5).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))))
                                 .with(ItemEntry.builder(Items.NETHERITE_SCRAP).weight(8).quality(5).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))))
@@ -442,7 +437,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(3.0F, 4.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.3f))
                                 .with(ItemEntry.builder(Items.SPECTRAL_ARROW).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(12.0F, 25.0F))))
                                 .with(ItemEntry.builder(Blocks.GOLD_BLOCK).quality(4).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 5.0F))))
                                 .with(ItemEntry.builder(Blocks.IRON_BLOCK).quality(3).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 5.0F))))
@@ -478,7 +472,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(1.0F, 3.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.2f))
                                 .with(ItemEntry.builder(Items.EMERALD).weight(5).quality(5).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(4.0F, 8.0F))))
                                 .with(ItemEntry.builder(Items.DIAMOND).weight(5).quality(5).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 2.0F))))
                                 .with(ItemEntry.builder(Items.PRISMARINE_CRYSTALS).weight(5).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 5.0F))))
@@ -492,7 +485,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(ConstantLootNumberProvider.create(2.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.3f))
                                 .with(ItemEntry.builder(Items.COOKED_COD).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 4.0F))))
                                 .with(ItemEntry.builder(Items.COOKED_SALMON).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 4.0F))))
                 )
@@ -508,7 +500,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(5.0F, 10.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.5f))
                                 .with(ItemEntry.builder(Items.ENCHANTED_GOLDEN_APPLE).weight(1).quality(5).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 2.0F))))
                                 .with(ItemEntry.builder(Items.MUSIC_DISC_OTHERSIDE).weight(1).quality(2))
                                 .with(ItemEntry.builder(Items.COMPASS).weight(2).quality(1).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))))
@@ -570,7 +561,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(4.0F, 10.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.3f))
                                 .with(
                                         ItemEntry.builder(Items.SUSPICIOUS_STEW)
                                                 .weight(1).quality(2)
@@ -592,7 +582,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(2.0F, 4.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.3f))
                                 .with(ItemEntry.builder(Items.DIAMOND).weight(5).quality(4).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.IRON_INGOT).weight(15).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 5.0F))))
                                 .with(ItemEntry.builder(Items.GOLD_INGOT).weight(15).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 7.0F))))
@@ -613,7 +602,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(ConstantLootNumberProvider.create(4.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(-0.2f, 0f))
                                 .with(ItemEntry.builder(Items.BONE).weight(10).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 8.0F))))
                                 .with(ItemEntry.builder(Items.GUNPOWDER).weight(10).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 8.0F))))
                                 .with(ItemEntry.builder(Items.ROTTEN_FLESH).weight(10).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 8.0F))))
@@ -633,7 +621,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(2.0F, 6.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0.27F, 0.6F))
                                 .with(ItemEntry.builder(Items.DIAMOND).weight(5).quality(3).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 7.0F))))
                                 .with(ItemEntry.builder(Items.IRON_INGOT).weight(10).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(4.0F, 8.0F))))
                                 .with(ItemEntry.builder(Items.GOLD_INGOT).weight(15).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 7.0F))))
@@ -726,7 +713,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(2.0F, 8.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.2f))
                                 .with(ItemEntry.builder(Items.APPLE).weight(15).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.COAL).weight(15).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 4.0F))))
                                 .with(ItemEntry.builder(Items.GOLD_NUGGET).weight(10).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
@@ -744,7 +730,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(2.0F, 6.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.3f))
                                 .with(ItemEntry.builder(Items.DIAMOND).weight(3).quality(4).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.IRON_INGOT).weight(10).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 5.0F))))
                                 .with(ItemEntry.builder(Items.GOLD_INGOT).weight(15).quality(3).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 7.0F))))
@@ -771,7 +756,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(2.0F, 4.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.3f))
                                 .with(ItemEntry.builder(Items.DIAMOND).weight(5).quality(5).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.IRON_INGOT).weight(5).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 5.0F))))
                                 .with(ItemEntry.builder(Items.GOLD_INGOT).weight(15).quality(3).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
@@ -797,13 +781,11 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(0.0F, 1.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.1f))
                                 .with(ItemEntry.builder(Items.CROSSBOW))
                 )
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(2.0F, 3.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.2f))
                                 .with(ItemEntry.builder(Items.WHEAT).weight(7).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(3.0F, 5.0F))))
                                 .with(ItemEntry.builder(Items.POTATO).weight(5).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 5.0F))))
                                 .with(ItemEntry.builder(Items.CARROT).weight(5).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(3.0F, 5.0F))))
@@ -816,7 +798,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(2.0F, 3.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.23f))
                                 .with(ItemEntry.builder(Items.EXPERIENCE_BOTTLE).weight(7).quality(3))
                                 .with(ItemEntry.builder(Items.STRING).weight(4).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 6.0F))))
                                 .with(ItemEntry.builder(Items.ARROW).weight(4).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 7.0F))))
@@ -827,7 +808,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(0.0F, 1.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.1f))
                                 .with(ItemEntry.builder(Items.GOAT_HORN))
                                 .apply(SetInstrumentLootFunction.builder(InstrumentTags.REGULAR_GOAT_HORNS))
                 )
@@ -858,7 +838,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(ConstantLootNumberProvider.create(3.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.3f))
                                 .with(ItemEntry.builder(Items.COMPASS).quality(2))
                                 .with(ItemEntry.builder(Items.MAP).quality(1))
                                 .with(ItemEntry.builder(Items.CLOCK).quality(2))
@@ -878,7 +857,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(3.0F, 10.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.3f))
                                 .with(ItemEntry.builder(Items.PAPER).weight(8).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 12.0F))))
                                 .with(ItemEntry.builder(Items.POTATO).weight(7).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 6.0F))))
                                 .with(ItemEntry.builder(Items.MOSS_BLOCK).weight(7).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 4.0F))))
@@ -921,7 +899,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(3.0F, 6.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.3f))
                                 .with(ItemEntry.builder(Items.IRON_INGOT).weight(90).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 5.0F))))
                                 .with(ItemEntry.builder(Items.GOLD_INGOT).weight(10).quality(3).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 5.0F))))
                                 .with(ItemEntry.builder(Items.EMERALD).weight(40).quality(4).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 5.0F))))
@@ -932,7 +909,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(2.0F, 5.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.2f))
                                 .with(ItemEntry.builder(Items.IRON_NUGGET).weight(50).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 10.0F))))
                                 .with(ItemEntry.builder(Items.GOLD_NUGGET).weight(10).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 10.0F))))
                                 .with(ItemEntry.builder(Items.LAPIS_LAZULI).weight(20).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 10.0F))))
@@ -965,7 +941,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(1.0F, 4.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.3f))
                                 .with(ItemEntry.builder(Items.IRON_INGOT).weight(10).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 4.0F))))
                                 .with(ItemEntry.builder(Items.GOLD_INGOT).weight(5).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 4.0F))))
                                 .with(ItemEntry.builder(Items.BREAD).quality(0).weight(20))
@@ -980,7 +955,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(ConstantLootNumberProvider.create(3.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(-0.3f, 0f))
                                 .with(ItemEntry.builder(Items.BONE).weight(10).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 8.0F))))
                                 .with(ItemEntry.builder(Items.GUNPOWDER).weight(10).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 8.0F))))
                                 .with(ItemEntry.builder(Items.ROTTEN_FLESH).weight(10).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 8.0F))))
@@ -992,7 +966,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(2.0F, 3.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.3f))
                                 .with(ItemEntry.builder(Items.ENDER_PEARL).weight(10).quality(3))
                                 .with(ItemEntry.builder(Items.DIAMOND).weight(3).quality(5).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.IRON_INGOT).weight(10).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 5.0F))))
@@ -1026,7 +999,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(1.0F, 4.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.3f))
                                 .with(ItemEntry.builder(Items.IRON_INGOT).weight(10).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 5.0F))))
                                 .with(ItemEntry.builder(Items.GOLD_INGOT).weight(5).quality(3).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.REDSTONE).weight(5).quality(3).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(4.0F, 9.0F))))
@@ -1042,7 +1014,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(2.0F, 10.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.25f))
                                 .with(ItemEntry.builder(Items.BOOK).weight(20).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.PAPER).weight(20).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 7.0F))))
                                 .with(ItemEntry.builder(Items.MAP).quality(0))
@@ -1071,7 +1042,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(2.0F, 8.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.24f))
                                 .with(ItemEntry.builder(LuckyCharmItems.FORTUNE_GEM).quality(5))
                                 .with(ItemEntry.builder(Items.COAL).weight(10).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 4.0F))))
                                 .with(ItemEntry.builder(Items.GOLD_NUGGET).weight(10).quality(3).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
@@ -1120,7 +1090,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(2.0F, 8.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.24f))
                                 .with(ItemEntry.builder(Items.COAL).weight(10).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 4.0F))))
                                 .with(ItemEntry.builder(Items.STONE_AXE).weight(2).quality(1))
                                 .with(ItemEntry.builder(Items.ROTTEN_FLESH).weight(5).quality(0))
@@ -1158,7 +1127,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(3.0F, 8.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.3f))
                                 .with(ItemEntry.builder(Items.DIAMOND).weight(3).quality(3).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.IRON_INGOT).weight(10).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 5.0F))))
                                 .with(ItemEntry.builder(Items.GOLD_INGOT).weight(5).quality(3).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
@@ -1189,7 +1157,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(3.0F, 8.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.3f))
                                 .with(ItemEntry.builder(Items.DIAMOND).quality(3).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.IRON_INGOT).weight(5).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 5.0F))))
                                 .with(ItemEntry.builder(Items.GOLD_INGOT).quality(3).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
@@ -1217,7 +1184,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(1.0F, 5.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.51f))
                                 .with(ItemEntry.builder(Items.MAP).weight(10).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.PAPER).weight(15).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 5.0F))))
                                 .with(ItemEntry.builder(Items.COMPASS).weight(5).quality(2))
@@ -1245,7 +1211,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(1.0F, 5.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.15f))
                                 .with(ItemEntry.builder(Items.CLAY_BALL).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.FLOWER_POT).quality(0))
                                 .with(ItemEntry.builder(Blocks.STONE).weight(2).quality(1))
@@ -1275,7 +1240,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(1.0F, 5.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.15f))
                                 .with(ItemEntry.builder(Items.IRON_INGOT).weight(2).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.BREAD).weight(4).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 4.0F))))
                                 .with(ItemEntry.builder(Items.IRON_HELMET).quality(2))
@@ -1301,7 +1265,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(1.0F, 5.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.15f))
                                 .with(ItemEntry.builder(Blocks.WHITE_WOOL).weight(6).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 8.0F))))
                                 .with(ItemEntry.builder(Blocks.BLACK_WOOL).weight(3).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Blocks.GRAY_WOOL).weight(2).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
@@ -1331,7 +1294,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(1.0F, 5.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.15f))
                                 .with(ItemEntry.builder(Items.EMERALD).quality(3))
                                 .with(ItemEntry.builder(Items.PORKCHOP).weight(6).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.WHEAT).weight(6).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
@@ -1359,7 +1321,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(1.0F, 5.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.15f))
                                 .with(ItemEntry.builder(Items.EMERALD).quality(3))
                                 .with(ItemEntry.builder(Items.ARROW).weight(2).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.FEATHER).weight(6).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
@@ -1387,7 +1348,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(1.0F, 5.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.15f))
                                 .with(ItemEntry.builder(Items.EMERALD).weight(1).quality(3))
                                 .with(ItemEntry.builder(Items.COD).weight(2).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.SALMON).weight(1).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
@@ -1416,7 +1376,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(1.0F, 5.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.15f))
                                 .with(ItemEntry.builder(Items.LEATHER).weight(1).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.LEATHER_CHESTPLATE).weight(2).quality(1))
                                 .with(ItemEntry.builder(Items.LEATHER_BOOTS).weight(2).quality(1))
@@ -1446,7 +1405,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(3.0F, 8.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.3f))
                                 .with(ItemEntry.builder(Items.REDSTONE).weight(2).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 4.0F))))
                                 .with(ItemEntry.builder(Items.BREAD).weight(7).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 4.0F))))
                                 .with(ItemEntry.builder(Items.ROTTEN_FLESH).weight(7).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 4.0F))))
@@ -1550,7 +1508,6 @@ public class LuckyCharmChestHyperModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(4.0F, 8.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.3f))
                                 .with(ItemEntry.builder(Items.OBSIDIAN).weight(40).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 2.0F))))
                                 .with(ItemEntry.builder(Items.FLINT).weight(40).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 4.0F))))
                                 .with(ItemEntry.builder(Items.IRON_NUGGET).weight(40).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(9.0F, 18.0F))))

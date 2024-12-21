@@ -5,6 +5,8 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementEntry;
 import net.minecraft.advancement.AdvancementFrame;
+import net.minecraft.advancement.criterion.InventoryChangedCriterion;
+import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -26,6 +28,23 @@ public class LuckyCharmAdvancementProvider extends FabricAdvancementProvider {
                 .display(
                         LuckyCharmItems.FOURLEAF_CLOVER,
                         Text.translatable(
+                                Util.createTranslationKey("advancements", new Identifier(LuckyCharm.MOD_ID, "adventure.four_leaf.title"))
+                        ),
+                        Text.translatable(
+                                Util.createTranslationKey("advancements", new Identifier(LuckyCharm.MOD_ID, "adventure.four_leaf.description"))
+                        ),
+                        null,
+                        AdvancementFrame.TASK,
+                        true,
+                        true,
+                        false
+                )
+                .criterion("clover", InventoryChangedCriterion.Conditions.items(LuckyCharmItems.FOURLEAF_CLOVER))
+                .build(consumer, "adventure/four_leaf");
+        AdvancementEntry b = Advancement.Builder.create()
+                .display(
+                        Blocks.CHEST,
+                        Text.translatable(
                                 Util.createTranslationKey("advancements", new Identifier(LuckyCharm.MOD_ID, "adventure.get_lucky.title"))
                         ),
                         Text.translatable(
@@ -37,6 +56,7 @@ public class LuckyCharmAdvancementProvider extends FabricAdvancementProvider {
                         true,
                         false
                 )
+                .parent(a)
                 .criterion("lucky_loot", LuckLootContainerCriterion.Conditions.create(3))
                 .build(consumer, "adventure/get_lucky");
         Advancement.Builder.create()
@@ -54,7 +74,7 @@ public class LuckyCharmAdvancementProvider extends FabricAdvancementProvider {
                         true,
                         true
                 )
-                .parent(a)
+                .parent(b)
                 .criterion("extreme_luck", LuckLootContainerCriterion.Conditions.create(7))
                 .build(consumer, "adventure/extreme_luck");
     }
