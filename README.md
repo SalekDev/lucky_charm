@@ -8,7 +8,8 @@ value. See `.../mixin/loot/LootPoolMixin.java` for a detailed explanation.
 
 ## Official Links
 
-
+<img src = "https://static.wikia.nocookie.net/minecraft-esp/images/4/4b/Modrinth_Logo.png/revision/latest?cb=20231227082445&path-prefix=es"
+  width = "15px"/> [Modrinth](https://modrinth.com/mod/lucky-charm)
 
 ## License
 
