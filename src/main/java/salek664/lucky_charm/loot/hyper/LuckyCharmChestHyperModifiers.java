@@ -114,6 +114,8 @@ public class LuckyCharmChestHyperModifiers {
                 return Optional.of(villageDesertHouseChest().build());
             } else if (LootTables.RUINED_PORTAL_CHEST == key) {
                 return Optional.of(ruinedPortalChest().build());
+            } else if (LootTables.WOODLAND_MANSION_CHEST == key) {
+                return Optional.of(woodlandMansionChest().build());
             }
         }
         return Optional.empty();
@@ -1501,6 +1503,51 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.BOOK).weight(1).quality(2))
                                 .with(ItemEntry.builder(Blocks.DEAD_BUSH).weight(2).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.EMERALD).weight(1).quality(3).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
+                );
+    }
+    public static LootTable.Builder woodlandMansionChest() {
+        return LootTable.builder()
+                .pool(
+                        LootPool.builder()
+                                .rolls(UniformLootNumberProvider.create(1.0F, 3.0F))
+                                .with(ItemEntry.builder(Items.LEAD).weight(20).quality(0))
+                                .with(ItemEntry.builder(Items.GOLDEN_APPLE).weight(15).quality(3))
+                                .with(ItemEntry.builder(Items.ENCHANTED_GOLDEN_APPLE).weight(2).quality(5))
+                                .with(ItemEntry.builder(Items.MUSIC_DISC_13).weight(15).quality(0))
+                                .with(ItemEntry.builder(Items.MUSIC_DISC_CAT).weight(15).quality(0))
+                                .with(ItemEntry.builder(Items.NAME_TAG).weight(20).quality(1))
+                                .with(ItemEntry.builder(Items.CHAINMAIL_CHESTPLATE).weight(10).quality(1))
+                                .with(ItemEntry.builder(Items.DIAMOND_HOE).weight(15).quality(2))
+                                .with(ItemEntry.builder(Items.DIAMOND_CHESTPLATE).weight(5).quality(2))
+                                .with(ItemEntry.builder(Items.BOOK).weight(10).quality(2).apply(EnchantRandomlyLootFunction.builder()))
+                )
+                .pool(
+                        LootPool.builder()
+                                .rolls(UniformLootNumberProvider.create(1.0F, 4.0F))
+                                .with(ItemEntry.builder(Items.IRON_INGOT).weight(10).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 4.0F))))
+                                .with(ItemEntry.builder(Items.GOLD_INGOT).weight(5).quality(3).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 4.0F))))
+                                .with(ItemEntry.builder(Items.BREAD).weight(20).quality(1))
+                                .with(ItemEntry.builder(Items.WHEAT).weight(20).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 4.0F))))
+                                .with(ItemEntry.builder(Items.BUCKET).weight(10).quality(1))
+                                .with(ItemEntry.builder(Items.REDSTONE).weight(15).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 4.0F))))
+                                .with(ItemEntry.builder(Items.COAL).weight(15).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 4.0F))))
+                                .with(ItemEntry.builder(Items.MELON_SEEDS).weight(10).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 4.0F))))
+                                .with(ItemEntry.builder(Items.PUMPKIN_SEEDS).weight(10).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 4.0F))))
+                                .with(ItemEntry.builder(Items.BEETROOT_SEEDS).weight(10).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 4.0F))))
+                )
+                .pool(
+                        LootPool.builder()
+                                .rolls(ConstantLootNumberProvider.create(3.0F))
+                                .with(ItemEntry.builder(Items.BONE).weight(10).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 8.0F))))
+                                .with(ItemEntry.builder(Items.GUNPOWDER).weight(10).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 8.0F))))
+                                .with(ItemEntry.builder(Items.ROTTEN_FLESH).weight(10).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 8.0F))))
+                                .with(ItemEntry.builder(Items.STRING).weight(10).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 8.0F))))
+                )
+                .pool(
+                        LootPool.builder()
+                                .rolls(ConstantLootNumberProvider.create(1.0F))
+                                .with(EmptyEntry.builder().weight(1).quality(0))
+                                .with(ItemEntry.builder(Items.VEX_ARMOR_TRIM_SMITHING_TEMPLATE).weight(1).quality(3))
                 );
     }
     public static LootTable.Builder ruinedPortalChest() {
