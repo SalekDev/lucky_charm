@@ -75,7 +75,7 @@ public class LuckyCharmAdvancementProvider extends FabricAdvancementProvider {
                         true
                 )
                 .parent(b)
-                .criterion("extreme_luck", LuckLootContainerCriterion.Conditions.create(7))
+                .criterion("extreme_luck", LuckLootContainerCriterion.Conditions.create(6))
                 .build(consumer, "adventure/extreme_luck");
     }
 }

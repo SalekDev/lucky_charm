@@ -3,7 +3,7 @@
   "criteria": {
     "extreme_luck": {
       "conditions": {
-        "luck": 7.0
+        "luck": 6.0
       },
       "trigger": "lucky_charm:player_opens_chest_with_luck"
     }
