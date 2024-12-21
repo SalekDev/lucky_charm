@@ -1,4 +1,4 @@
-package salek664.lucky_charm.mixin;
+package salek664.lucky_charm.mixin.entity;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffectInstance;

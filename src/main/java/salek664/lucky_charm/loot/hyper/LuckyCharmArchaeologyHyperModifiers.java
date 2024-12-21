@@ -11,12 +11,21 @@ import net.minecraft.loot.function.SetStewEffectLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.registry.RegistryKey;
+import salek664.lucky_charm.LuckyCharm;
 import salek664.lucky_charm.item.LuckyCharmItems;
 
+import java.util.List;
 import java.util.Optional;
 
 public class LuckyCharmArchaeologyHyperModifiers {
-    public static Optional<LootTable> attemptReplace(RegistryKey<LootTable> key, LootTableSource source, boolean enabled) {
+    public static Optional<LootTable> attemptReplace(RegistryKey<LootTable> key, LootTableSource source, boolean enabled, List<String> excepts) {
+        String k = key.getValue().toUnderscoreSeparatedString();
+        for (String except : excepts) {
+            if (k.endsWith(except)) {
+                enabled = !enabled;
+                break;
+            }
+        }
         if (enabled && source.isBuiltin()) {
             if (LootTables.DESERT_WELL_ARCHAEOLOGY == key) {
                 return Optional.of(desertWellArchaeology());

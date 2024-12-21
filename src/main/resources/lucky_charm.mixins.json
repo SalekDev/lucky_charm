@@ -3,13 +3,14 @@
   "package": "salek664.lucky_charm.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ElderGuardianMixin",
-    "ItemStackMixin",
-    "LeafEntryAccessor",
-    "LootPool$BuilderMixin",
-    "LootPoolMixin",
-    "SmithingTemplateItemAccessor",
-    "WitchEntityMixin"
+    "entity.ElderGuardianMixin",
+    "entity.WitchEntityMixin",
+    "item.ItemStackMixin",
+    "item.SmithingTemplateItemAccessor",
+    "loot.LeafEntryAccessor",
+    "loot.LootPool$BuilderMixin",
+    "loot.LootPoolMixin",
+    "loot.criteria.PlayerGeneratesContainerLootCriterionMixin"
   ],
   "injectors": {
     "defaultRequire": 1

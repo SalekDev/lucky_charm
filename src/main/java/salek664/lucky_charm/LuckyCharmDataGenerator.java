@@ -17,6 +17,7 @@ public class LuckyCharmDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(LuckyCharmItemTagProvider::new);
 		pack.addProvider(LuckyCharmRecipeProvider::new);
 		pack.addProvider(LuckyCharmDynamicRegistriesProvider::new);
+		pack.addProvider(LuckyCharmAdvancementProvider::new);
 	}
 	@Override
 	public void buildRegistry(RegistryBuilder registryBuilder) {

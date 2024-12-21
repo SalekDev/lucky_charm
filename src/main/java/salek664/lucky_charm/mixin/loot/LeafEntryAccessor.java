@@ -1,4 +1,4 @@
-package salek664.lucky_charm.mixin;
+package salek664.lucky_charm.mixin.loot;
 
 import net.minecraft.loot.entry.LeafEntry;
 import org.spongepowered.asm.mixin.Mixin;

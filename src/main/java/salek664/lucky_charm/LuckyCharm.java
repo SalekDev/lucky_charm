@@ -4,8 +4,9 @@ import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import salek664.lucky_charm.advancement.criterion.LuckyCharmCriteria;
 import salek664.lucky_charm.config.LuckyCharmConfigReader;
-import salek664.lucky_charm.config.LuckyCharmLootTableManager;
+import salek664.lucky_charm.config.LuckyCharmLootTableLoader;
 import salek664.lucky_charm.item.LuckyCharmItemGroups;
 import salek664.lucky_charm.item.LuckyCharmItems;
 import salek664.lucky_charm.item.LuckyCharmPotions;
@@ -23,7 +24,7 @@ public class LuckyCharm implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 		LOGGER.info("Initializing lucky charm mod");
-		LuckyCharmLootTableManager.initializeSettings(LuckyCharmConfigReader.getCurrentConfig());
+		LuckyCharmLootTableLoader.loadSettings(LuckyCharmConfigReader.getCurrentConfig());
 		LuckyCharmItems.registerItems();
 		LuckyCharmItemGroups.registerItemGroups();
 		LuckyCharmBlockLootTableModifiers.registerModifiers();
@@ -31,5 +32,6 @@ public class LuckyCharm implements ModInitializer {
 		PerkDataComponent.registerPerkDataComponent();
 		LuckyCharmPerks.registerPerkRegistry();
 		LuckyCharmPotions.registerPotionRecipes();
+		LuckyCharmCriteria.registerCriteria();
 	}
 }

@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.loot.v2.LootTableSource;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.map.MapDecorationTypes;
 import net.minecraft.loot.LootPool;
@@ -19,11 +20,20 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.tag.InstrumentTags;
 import net.minecraft.registry.tag.StructureTags;
 import net.minecraft.text.Text;
+import salek664.lucky_charm.item.LuckyCharmItems;
 
+import java.util.List;
 import java.util.Optional;
 
 public class LuckyCharmChestLootTableModifiers {
-    public static Optional<LootTable> attemptReplace(RegistryKey<LootTable> key, LootTableSource source, boolean enabled) {
+    public static Optional<LootTable> attemptReplace(RegistryKey<LootTable> key, LootTableSource source, boolean enabled, List<String> excepts) {
+        String k = key.getValue().toUnderscoreSeparatedString();
+        for (String except : excepts) {
+            if (k.endsWith(except)) {
+                enabled = !enabled; //An exception does the opposite of the predefined enabled
+                break;
+            }
+        }
         if (enabled && source.isBuiltin()) {
             if (LootTables.ABANDONED_MINESHAFT_CHEST == key) {
                 return Optional.of(abandonedMineshaftChest());
@@ -218,14 +228,14 @@ public class LuckyCharmChestLootTableModifiers {
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
                                 .with(EmptyEntry.builder().weight(10).quality(-1))
                                 .with(EmptyEntry.builder().weight(1))
-                                .with(ItemEntry.builder(Items.SNOUT_ARMOR_TRIM_SMITHING_TEMPLATE).weight(1))
+                                .with(ItemEntry.builder(Items.SNOUT_ARMOR_TRIM_SMITHING_TEMPLATE).weight(1).quality(4))
                 )
                 .pool(
                         LootPool.builder()
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
                                 .with(EmptyEntry.builder().weight(15).quality(-2))
                                 .with(EmptyEntry.builder().weight(3))
-                                .with(ItemEntry.builder(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE).weight(2))
+                                .with(ItemEntry.builder(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE).weight(2).quality(4))
                 ).build();
     }
     private static LootTable bastionHoglinStableChest() {
@@ -283,14 +293,14 @@ public class LuckyCharmChestLootTableModifiers {
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
                                 .with(EmptyEntry.builder().weight(10).quality(-1))
                                 .with(EmptyEntry.builder().weight(1))
-                                .with(ItemEntry.builder(Items.SNOUT_ARMOR_TRIM_SMITHING_TEMPLATE).weight(1))
+                                .with(ItemEntry.builder(Items.SNOUT_ARMOR_TRIM_SMITHING_TEMPLATE).weight(1).quality(4))
                 )
                 .pool(
                         LootPool.builder()
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
                                 .with(EmptyEntry.builder().weight(15).quality(-2))
                                 .with(EmptyEntry.builder().weight(3))
-                                .with(ItemEntry.builder(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE).weight(2))
+                                .with(ItemEntry.builder(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE).weight(2).quality(4))
                 ).build();
     }
     private static LootTable bastionOtherChest() {
@@ -379,14 +389,14 @@ public class LuckyCharmChestLootTableModifiers {
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
                                 .with(EmptyEntry.builder().weight(10).quality(-1))
                                 .with(EmptyEntry.builder().weight(1))
-                                .with(ItemEntry.builder(Items.SNOUT_ARMOR_TRIM_SMITHING_TEMPLATE).weight(1))
+                                .with(ItemEntry.builder(Items.SNOUT_ARMOR_TRIM_SMITHING_TEMPLATE).weight(1).quality(4))
                 )
                 .pool(
                         LootPool.builder()
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
                                 .with(EmptyEntry.builder().weight(15).quality(-2))
                                 .with(EmptyEntry.builder().weight(3))
-                                .with(ItemEntry.builder(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE).weight(2))
+                                .with(ItemEntry.builder(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE).weight(2).quality(4))
                 ).build();
     }
     private static LootTable bastionTreasureChest() {
@@ -456,12 +466,12 @@ public class LuckyCharmChestLootTableModifiers {
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
                                 .with(EmptyEntry.builder().weight(10).quality(-1))
                                 .with(EmptyEntry.builder())
-                                .with(ItemEntry.builder(Items.SNOUT_ARMOR_TRIM_SMITHING_TEMPLATE).weight(1))
+                                .with(ItemEntry.builder(Items.SNOUT_ARMOR_TRIM_SMITHING_TEMPLATE).weight(1).quality(4))
                 )
                 .pool(
                         LootPool.builder()
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
-                                .with(ItemEntry.builder(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE).weight(1))
+                                .with(ItemEntry.builder(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE).weight(1).quality(4))
                 ).build();
     }
     private static LootTable buriedTreasureChest() {
@@ -561,8 +571,8 @@ public class LuckyCharmChestLootTableModifiers {
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
                                 .with(EmptyEntry.builder().weight(73).quality(-10))
                                 .with(EmptyEntry.builder().weight(2))
-                                .with(ItemEntry.builder(Items.WARD_ARMOR_TRIM_SMITHING_TEMPLATE).weight(4))
-                                .with(ItemEntry.builder(Items.SILENCE_ARMOR_TRIM_SMITHING_TEMPLATE).weight(1))
+                                .with(ItemEntry.builder(Items.WARD_ARMOR_TRIM_SMITHING_TEMPLATE).weight(4).quality(1))
+                                .with(ItemEntry.builder(Items.SILENCE_ARMOR_TRIM_SMITHING_TEMPLATE).weight(1).quality(4))
                 ).build();
     }
     private static LootTable ancientCityIceboxChest() {
@@ -624,7 +634,15 @@ public class LuckyCharmChestLootTableModifiers {
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
                                 .with(EmptyEntry.builder().weight(22).quality(-3))
                                 .with(EmptyEntry.builder().weight(2))
-                                .with(ItemEntry.builder(Items.DUNE_ARMOR_TRIM_SMITHING_TEMPLATE).weight(4).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F))))
+                                .with(
+                                        ItemEntry.builder(LuckyCharmItems.FORTUNED_TRAVELLER_SMITHING_TEMPLATE)
+                                        .quality(4)
+                                )
+                                .with(
+                                        ItemEntry.builder(Items.DUNE_ARMOR_TRIM_SMITHING_TEMPLATE).weight(4)
+                                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F)))
+                                        .quality(2)
+                                )
                 ).build();
     }
     private static LootTable endCityTreasureChest() {
@@ -718,7 +736,7 @@ public class LuckyCharmChestLootTableModifiers {
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
                                 .with(EmptyEntry.builder().weight(13).quality(-2))
                                 .with(EmptyEntry.builder())
-                                .with(ItemEntry.builder(Items.SPIRE_ARMOR_TRIM_SMITHING_TEMPLATE).weight(1))
+                                .with(ItemEntry.builder(Items.SPIRE_ARMOR_TRIM_SMITHING_TEMPLATE).weight(1).quality(4))
                 ).build();
     }
     private static LootTable iglooChest() {
@@ -766,7 +784,11 @@ public class LuckyCharmChestLootTableModifiers {
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
                                 .with(EmptyEntry.builder().weight(16).quality(-3))
                                 .with(EmptyEntry.builder().weight(4))
-                                .with(ItemEntry.builder(Items.WILD_ARMOR_TRIM_SMITHING_TEMPLATE).weight(10).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F))))
+                                .with(ItemEntry.builder(LuckyCharmItems.FORTUNED_TRAVELLER_SMITHING_TEMPLATE).weight(3).quality(4))
+                                .with(
+                                        ItemEntry.builder(Items.WILD_ARMOR_TRIM_SMITHING_TEMPLATE).weight(10).quality(2)
+                                                .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F)))
+                                )
                 ).build();
     }
     private static LootTable netherBridgeChest() {
@@ -793,7 +815,7 @@ public class LuckyCharmChestLootTableModifiers {
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
                                 .with(EmptyEntry.builder().weight(14).quality(-2))
                                 .with(EmptyEntry.builder().weight(1))
-                                .with(ItemEntry.builder(Items.RIB_ARMOR_TRIM_SMITHING_TEMPLATE).weight(1))
+                                .with(ItemEntry.builder(Items.RIB_ARMOR_TRIM_SMITHING_TEMPLATE).weight(1).quality(4))
                 ).build();
     }
     private static LootTable pillagerOutpostChest() {
@@ -801,7 +823,7 @@ public class LuckyCharmChestLootTableModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(0.0F, 1.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.1f))
+                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.2f))
                                 .with(ItemEntry.builder(Items.CROSSBOW)))
                 .pool(
                         LootPool.builder()
@@ -813,7 +835,7 @@ public class LuckyCharmChestLootTableModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(UniformLootNumberProvider.create(1.0F, 3.0F))
-                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.1f))
+                                .bonusRolls(UniformLootNumberProvider.create(0f, 0.2f))
                                 .with(ItemEntry.builder(Blocks.DARK_OAK_LOG).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 3.0F))))
                 )
                 .pool(
@@ -839,7 +861,10 @@ public class LuckyCharmChestLootTableModifiers {
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
                                 .with(EmptyEntry.builder().weight(10).quality(-2))
                                 .with(EmptyEntry.builder().weight(2))
-                                .with(ItemEntry.builder(Items.SENTRY_ARMOR_TRIM_SMITHING_TEMPLATE).weight(4).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F))))
+                                .with(
+                                        ItemEntry.builder(Items.SENTRY_ARMOR_TRIM_SMITHING_TEMPLATE).weight(4).quality(4)
+                                                .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F)))
+                                )
                 ).build();
     }
     private static LootTable shipwreckMapChest() {
@@ -875,7 +900,7 @@ public class LuckyCharmChestLootTableModifiers {
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
                                 .with(EmptyEntry.builder().weight(13).quality(-2))
                                 .with(EmptyEntry.builder().weight(2))
-                                .with(ItemEntry.builder(Items.COAST_ARMOR_TRIM_SMITHING_TEMPLATE).weight(3).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F))))
+                                .with(ItemEntry.builder(Items.COAST_ARMOR_TRIM_SMITHING_TEMPLATE).weight(3).quality(4).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F))))
                 ).build();
     }
     private static LootTable shipwreckSupplyChest() {
@@ -919,7 +944,7 @@ public class LuckyCharmChestLootTableModifiers {
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
                                 .with(EmptyEntry.builder().weight(13).quality(-2))
                                 .with(EmptyEntry.builder().weight(2))
-                                .with(ItemEntry.builder(Items.COAST_ARMOR_TRIM_SMITHING_TEMPLATE).weight(3).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F))))
+                                .with(ItemEntry.builder(Items.COAST_ARMOR_TRIM_SMITHING_TEMPLATE).weight(3).quality(4).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F))))
                 ).build();
     }
     private static LootTable shipwreckTreasureChest() {
@@ -948,10 +973,11 @@ public class LuckyCharmChestLootTableModifiers {
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
                                 .with(EmptyEntry.builder().weight(13).quality(-2))
                                 .with(EmptyEntry.builder().weight(2))
-                                .with(ItemEntry.builder(Items.COAST_ARMOR_TRIM_SMITHING_TEMPLATE).weight(3).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F))))
+                                .with(ItemEntry.builder(LuckyCharmItems.FORTUNED_TRAVELLER_SMITHING_TEMPLATE).quality(4))
+                                .with(ItemEntry.builder(Items.COAST_ARMOR_TRIM_SMITHING_TEMPLATE).weight(3).quality(2).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F))))
                 ).build();
     }
-    private static LootTable simpleDungeonChest() {//TODO improve positive entries
+    private static LootTable simpleDungeonChest() {
         return LootTable.builder()
                 .pool(
                         LootPool.builder()
@@ -1027,7 +1053,7 @@ public class LuckyCharmChestLootTableModifiers {
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
                                 .with(EmptyEntry.builder().weight(14).quality(-2))
                                 .with(EmptyEntry.builder().weight(4))
-                                .with(ItemEntry.builder(Items.EYE_ARMOR_TRIM_SMITHING_TEMPLATE).weight(2))
+                                .with(ItemEntry.builder(Items.EYE_ARMOR_TRIM_SMITHING_TEMPLATE).weight(2).quality(4))
                 ).build();
     }
     private static LootTable strongholdCrossingChest() {
@@ -1082,7 +1108,7 @@ public class LuckyCharmChestLootTableModifiers {
                                 .bonusRolls(UniformLootNumberProvider.create(0.11f, 0.18f))
                                 .with(
                                         ItemEntry.builder(Items.BOOK)
-                                                .apply(EnchantWithLevelsLootFunction.builder(ConstantLootNumberProvider.create(30.0F)).allowTreasureEnchantments())
+                                                .apply(EnchantWithLevelsLootFunction.builder(ConstantLootNumberProvider.create(25.0F)).allowTreasureEnchantments())
                                 )
                 )
                 .pool(
@@ -1114,11 +1140,18 @@ public class LuckyCharmChestLootTableModifiers {
                                                 )
                                                 .apply(SetNameLootFunction.builder(Text.translatable("filled_map.buried_treasure"), SetNameLootFunction.Target.ITEM_NAME))
                                 )
+                )
+                .pool(
+                        LootPool.builder()
+                                .rolls(ConstantLootNumberProvider.create(1.0f))
+                                .with(EmptyEntry.builder().weight(1))
+                                .with(EmptyEntry.builder().weight(30).quality(-4))
+                                .with(ItemEntry.builder(LuckyCharmItems.FORTUNED_TRAVELLER_SMITHING_TEMPLATE).quality(4))
                 ).build();
     }
     private static LootTable underwaterRuinSmallChest() {
         return LootTable.builder()
-                .pool(//TODO perhaps add more special super lucky pools like this one to other tables
+                .pool(
                         LootPool.builder()
                                 .rolls(ConstantLootNumberProvider.create(0f))
                                 .bonusRolls(UniformLootNumberProvider.create(0.11f, 0.18f))

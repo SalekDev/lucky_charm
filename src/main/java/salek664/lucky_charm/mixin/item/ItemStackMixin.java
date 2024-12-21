@@ -1,4 +1,4 @@
-package salek664.lucky_charm.mixin;
+package salek664.lucky_charm.mixin.item;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemStack;
 import net.minecraft.client.item.TooltipType;

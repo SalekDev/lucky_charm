@@ -1,4 +1,4 @@
-package salek664.lucky_charm.mixin;
+package salek664.lucky_charm.mixin.loot;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import it.unimi.dsi.fastutil.floats.FloatArrayList;

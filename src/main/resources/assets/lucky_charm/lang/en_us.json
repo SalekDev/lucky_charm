@@ -14,7 +14,12 @@
 
   "perk.lucky_charm.fortuned_traveller": "Fortuned Traveller",
 
-  "lucky_charm.midnightconfig.title": "Loot Configuration",
-  "lucky_charm.midnightconfig.doHyperLootPools": "New loot generation algorithm (requires restart to work as intended)",
-  "lucky_charm.midnightconfig.category.loot": "Loot Generation Settings"
+  "item.minecraft.lingering_potion.effect.unluck": "Lingering Potion of Unluck",
+  "item.minecraft.splash_potion.effect.unluck": "Splash Potion of Unluck",
+  "item.minecraft.potion.effect.unluck": "Potion of Unluck",
+
+  "advancements.lucky_charm.adventure.get_lucky.title": "What are the odds?",
+  "advancements.lucky_charm.adventure.get_lucky.description": "Get lucky with chests or archaeology",
+  "advancements.lucky_charm.adventure.extreme_luck.title": "0.00001% chance",
+  "advancements.lucky_charm.adventure.extreme_luck.description": "Get loot with more than luck 7"
 }

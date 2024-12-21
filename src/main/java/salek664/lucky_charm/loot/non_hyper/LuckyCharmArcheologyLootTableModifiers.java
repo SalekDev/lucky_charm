@@ -7,6 +7,7 @@ import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTables;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.entry.LootPoolEntry;
 import net.minecraft.loot.entry.LootTableEntry;
 import net.minecraft.loot.function.SetStewEffectLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
@@ -14,10 +15,17 @@ import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.registry.RegistryKey;
 import salek664.lucky_charm.item.LuckyCharmItems;
 
+import java.util.List;
 import java.util.Optional;
-//TODO redo nonHyper modifiers properly with loot table splitting like the fishing rod
 public class LuckyCharmArcheologyLootTableModifiers {
-    public static Optional<LootTable> attemptReplace(RegistryKey<LootTable> key, LootTableSource source, boolean enabled) {
+    public static Optional<LootTable> attemptReplace(RegistryKey<LootTable> key, LootTableSource source, boolean enabled, List<String> excepts) {
+        String k = key.getValue().toUnderscoreSeparatedString();
+        for (String except : excepts) {
+            if (k.endsWith(except)) {
+                enabled = !enabled;
+                break;
+            }
+        }
         if (enabled && source.isBuiltin()) {
             if (LootTables.DESERT_WELL_ARCHAEOLOGY == key) {
                 return Optional.of(desertWellArchaeology());
@@ -40,13 +48,13 @@ public class LuckyCharmArcheologyLootTableModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
-                                .with(ItemEntry.builder(Items.ARMS_UP_POTTERY_SHERD).weight(2).quality(2))
-                                .with(ItemEntry.builder(Items.BREWER_POTTERY_SHERD).weight(2).quality(2))
-                                .with(ItemEntry.builder(Items.BRICK).quality(1))
-                                .with(ItemEntry.builder(Items.EMERALD).quality(4))
-                                .with(ItemEntry.builder(Items.STICK).quality(0))
+                                .with(ItemEntry.builder(Items.ARMS_UP_POTTERY_SHERD).weight(2))
+                                .with(ItemEntry.builder(Items.BREWER_POTTERY_SHERD).weight(2))
+                                .with(ItemEntry.builder(Items.BRICK))
+                                .with(ItemEntry.builder(Items.EMERALD))
+                                .with(ItemEntry.builder(Items.STICK))
                                 .with(
-                                        ItemEntry.builder(Items.SUSPICIOUS_STEW).quality(2)
+                                        ItemEntry.builder(Items.SUSPICIOUS_STEW)
                                                 .apply(
                                                         SetStewEffectLootFunction.builder()
                                                                 .withEffect(StatusEffects.NIGHT_VISION, UniformLootNumberProvider.create(7.0F, 10.0F))
@@ -64,25 +72,30 @@ public class LuckyCharmArcheologyLootTableModifiers {
                 .pool(
                         LootPool.builder()
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
-                                .with(ItemEntry.builder(Items.ARCHER_POTTERY_SHERD).quality(2))
-                                .with(ItemEntry.builder(Items.MINER_POTTERY_SHERD).quality(2))
-                                .with(ItemEntry.builder(Items.PRIZE_POTTERY_SHERD).quality(2))
-                                .with(ItemEntry.builder(Items.SKULL_POTTERY_SHERD).quality(2))
-                                .with(ItemEntry.builder(Items.DIAMOND).quality(4))
-                                .with(ItemEntry.builder(Items.TNT).quality(2))
-                                .with(ItemEntry.builder(Items.GUNPOWDER).quality(1))
-                                .with(ItemEntry.builder(Items.EMERALD).quality(4))
+                                .with(ItemEntry.builder(Items.ARCHER_POTTERY_SHERD))
+                                .with(ItemEntry.builder(Items.MINER_POTTERY_SHERD))
+                                .with(ItemEntry.builder(Items.PRIZE_POTTERY_SHERD))
+                                .with(ItemEntry.builder(Items.SKULL_POTTERY_SHERD))
+                                .with(ItemEntry.builder(Items.DIAMOND))
+                                .with(ItemEntry.builder(Items.TNT))
+                                .with(ItemEntry.builder(Items.GUNPOWDER))
+                                .with(ItemEntry.builder(Items.EMERALD))
+                                .with(ItemEntry.builder(LuckyCharmItems.FORTUNE_GEM))
                 ).build();
     }
     private static LootTable trailRuinsCommonArchaeology() {
-        return LootTable.builder()
+        LootTable treasure = LootTable.builder()
                 .pool(
                         LootPool.builder()
-                                .rolls(ConstantLootNumberProvider.create(1.0F))
-                                .with(ItemEntry.builder(Items.EMERALD).weight(2).quality(5))
-                                .with(ItemEntry.builder(Items.WHEAT).weight(2).quality(0))
-                                .with(ItemEntry.builder(Items.WOODEN_HOE).weight(2).quality(0))
-                                .with(ItemEntry.builder(Items.CLAY).weight(2).quality(1))
+                                .with(ItemEntry.builder(Items.EMERALD).weight(2))
+                                .with(ItemEntry.builder(Items.GOLD_NUGGET))
+                                .with(ItemEntry.builder(LuckyCharmItems.FORTUNE_GEM).quality(1))
+                ).build();
+        LootTable common = LootTable.builder()
+                .pool(
+                        LootPool.builder()
+                                .with(ItemEntry.builder(Items.FLOWER_POT).quality(1))
+                                .with(ItemEntry.builder(Items.LEAD))
                                 .with(ItemEntry.builder(Items.BRICK).weight(2).quality(1))
                                 .with(ItemEntry.builder(Items.YELLOW_DYE).weight(2).quality(0))
                                 .with(ItemEntry.builder(Items.BLUE_DYE).weight(2).quality(0))
@@ -100,16 +113,27 @@ public class LuckyCharmArcheologyLootTableModifiers {
                                 .with(ItemEntry.builder(Items.RED_STAINED_GLASS_PANE).quality(1))
                                 .with(ItemEntry.builder(Items.YELLOW_STAINED_GLASS_PANE).quality(1))
                                 .with(ItemEntry.builder(Items.PURPLE_STAINED_GLASS_PANE).quality(1))
-                                .with(ItemEntry.builder(Items.SPRUCE_HANGING_SIGN).quality(0))
-                                .with(ItemEntry.builder(Items.OAK_HANGING_SIGN).quality(0))
-                                .with(ItemEntry.builder(Items.GOLD_NUGGET).quality(3))
                                 .with(ItemEntry.builder(Items.COAL).quality(1))
+                ).build();
+        LootTable junk = LootTable.builder()
+                .pool(
+                        LootPool.builder()
+                                .with(ItemEntry.builder(Items.CLAY).weight(2).quality(1))
+                                .with(ItemEntry.builder(Items.WHEAT).weight(2).quality(0))
+                                .with(ItemEntry.builder(Items.WOODEN_HOE).weight(2).quality(0))
                                 .with(ItemEntry.builder(Items.WHEAT_SEEDS).quality(0))
                                 .with(ItemEntry.builder(Items.BEETROOT_SEEDS).quality(0))
                                 .with(ItemEntry.builder(Items.DEAD_BUSH).quality(0))
-                                .with(ItemEntry.builder(Items.FLOWER_POT).quality(1))
                                 .with(ItemEntry.builder(Items.STRING))
-                                .with(ItemEntry.builder(Items.LEAD))
+                                .with(ItemEntry.builder(Items.SPRUCE_HANGING_SIGN).quality(0))
+                                .with(ItemEntry.builder(Items.OAK_HANGING_SIGN).quality(0))
+                ).build();
+        return LootTable.builder()
+                .pool(
+                        LootPool.builder()
+                                .with(LootTableEntry.builder(treasure).weight(10).quality(1))
+                                .with(LootTableEntry.builder(common).weight(24).quality(-1))
+                                .with(LootTableEntry.builder(junk).weight(12).quality(-1))
                 ).build();
     }
     private static LootTable trailRuinsRareArchaeology() {
@@ -120,6 +144,7 @@ public class LuckyCharmArcheologyLootTableModifiers {
                         .with(ItemEntry.builder(Items.SHAPER_ARMOR_TRIM_SMITHING_TEMPLATE).weight(3))
                         .with(ItemEntry.builder(Items.HOST_ARMOR_TRIM_SMITHING_TEMPLATE).weight(3))
                         .with(ItemEntry.builder(Items.MUSIC_DISC_RELIC).weight(3))
+                        .with(ItemEntry.builder(LuckyCharmItems.FORTUNED_TRAVELLER_SMITHING_TEMPLATE).quality(1))
                         .with(ItemEntry.builder(LuckyCharmItems.FORTUNE_GEM).quality(1))
         ).build();
         LootTable common = LootTable.builder().pool(
@@ -142,8 +167,8 @@ public class LuckyCharmArcheologyLootTableModifiers {
         LootTable treasure = LootTable.builder().pool(
                 LootPool.builder()
                         .with(ItemEntry.builder(Items.SNIFFER_EGG).weight(2))
-                        .with(ItemEntry.builder(Items.GOLD_NUGGET).weight(4))
-                        .with(ItemEntry.builder(Items.EMERALD).weight(4))
+                        .with(ItemEntry.builder(Items.GOLD_NUGGET).weight(2))
+                        .with(ItemEntry.builder(Items.EMERALD).weight(2))
                         .with(ItemEntry.builder(LuckyCharmItems.FORTUNE_GEM).quality(1))
         ).build();
         LootTable common = LootTable.builder().pool(
@@ -161,9 +186,9 @@ public class LuckyCharmArcheologyLootTableModifiers {
         ).build();
         return LootTable.builder().pool(
                 LootPool.builder()
-                        .with(LootTableEntry.builder(treasure).weight(15).quality(1))
-                        .with(LootTableEntry.builder(common).weight(12).quality(-1))
-                        .with(LootTableEntry.builder(junk).weight(9).quality(-1))
+                        .with(LootTableEntry.builder(treasure).weight(10).quality(1))
+                        .with(LootTableEntry.builder(common).weight(8).quality(-1))
+                        .with(LootTableEntry.builder(junk).weight(12).quality(-1))
         ).build();
     }
     private static LootTable oceanRuinColdArchaeology() {
@@ -189,9 +214,9 @@ public class LuckyCharmArcheologyLootTableModifiers {
         ).build();
         return LootTable.builder().pool(
                 LootPool.builder()
-                        .with(LootTableEntry.builder(treasure).weight(6).quality(1))
-                        .with(LootTableEntry.builder(common).weight(15).quality(-1))
-                        .with(LootTableEntry.builder(junk).weight(9).quality(-1))
+                        .with(LootTableEntry.builder(treasure).weight(8).quality(1))
+                        .with(LootTableEntry.builder(common).weight(10).quality(-1))
+                        .with(LootTableEntry.builder(junk).weight(12).quality(-1))
         ).build();
     }
 }

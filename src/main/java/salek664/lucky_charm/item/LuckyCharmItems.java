@@ -12,7 +12,7 @@ import net.minecraft.util.Util;
 import salek664.lucky_charm.LuckyCharm;
 import salek664.lucky_charm.perk.LuckyCharmPerks;
 import salek664.lucky_charm.perk.PerkSmithingTemplate;
-import salek664.lucky_charm.mixin.SmithingTemplateItemAccessor;
+import salek664.lucky_charm.mixin.item.SmithingTemplateItemAccessor;
 
 public class LuckyCharmItems {
     public static final Item THREELEAF_CLOVER = register("three_leaf_clover", new Item(new Item.Settings()));

@@ -1,4 +1,4 @@
-package salek664.lucky_charm.mixin;
+package salek664.lucky_charm.mixin.item;
 
 import net.minecraft.item.SmithingTemplateItem;
 import net.minecraft.text.Text;

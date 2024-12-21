@@ -73,13 +73,11 @@ public class PerkTrimRecipe implements SmithingRecipe {
                 if (perkList != null) {
                     if (perkList.stream().noneMatch(perk -> perk.equals(actualPerk))) {
                         perkList.add(actualPerk);
-                        ItemStack upgradedEquipment = upgradeEquipment(equipment, perkList, actualPerk);
-                        return upgradedEquipment;
+                        return upgradeEquipment(equipment, perkList, actualPerk);
                     }
                 } else {
                     perkList = List.of(actualPerk);
-                    ItemStack upgradedEquipment = upgradeEquipment(equipment, perkList, actualPerk);
-                    return upgradedEquipment;
+                    return upgradeEquipment(equipment, perkList, actualPerk);
                 }
             }
         }
@@ -150,7 +148,7 @@ public class PerkTrimRecipe implements SmithingRecipe {
         private final Ingredient template;
         private final Ingredient base;
         private final Ingredient addition;
-        private final Map<String, AdvancementCriterion<?>> criteria = new LinkedHashMap();
+        private final Map<String, AdvancementCriterion<?>> criteria = new LinkedHashMap<>();
         public PerkTrimRecipeJsonBuilder(RecipeCategory category, Ingredient template, Ingredient base, Ingredient addition) {
             this.category = category;
             this.template = template;
