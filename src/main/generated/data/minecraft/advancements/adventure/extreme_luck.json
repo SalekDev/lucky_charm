@@ -1,0 +1,31 @@
+{
+  "parent": "minecraft:adventure/get_lucky",
+  "criteria": {
+    "extreme_luck": {
+      "conditions": {
+        "luck": 7.0
+      },
+      "trigger": "lucky_charm:player_opens_chest_with_luck"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.lucky_charm.adventure.extreme_luck.description"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "lucky_charm:fortune_gem"
+    },
+    "title": {
+      "translate": "advancements.lucky_charm.adventure.extreme_luck.title"
+    }
+  },
+  "requirements": [
+    [
+      "extreme_luck"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

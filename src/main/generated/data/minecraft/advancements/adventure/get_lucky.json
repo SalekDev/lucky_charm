@@ -1,0 +1,30 @@
+{
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "lucky_loot": {
+      "conditions": {
+        "luck": 3.0
+      },
+      "trigger": "lucky_charm:player_opens_chest_with_luck"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.lucky_charm.adventure.get_lucky.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "lucky_charm:four_leaf_clover"
+    },
+    "title": {
+      "translate": "advancements.lucky_charm.adventure.get_lucky.title"
+    }
+  },
+  "requirements": [
+    [
+      "lucky_loot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
