@@ -2,7 +2,6 @@ package salek664.lucky_charm.perk;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.Item;
@@ -41,7 +40,7 @@ public record AttributeEquipmentPerk(AttributeModifier attributeModifier, Text n
             AttributeEquipmentPerk::attributeModifier,
             TextCodecs.PACKET_CODEC,
             AttributeEquipmentPerk::name,
-            PacketCodecs.BOOL,
+            PacketCodecs.BOOLEAN,
             AttributeEquipmentPerk::showInTooltip,
             AttributeEquipmentPerk::new
     );
