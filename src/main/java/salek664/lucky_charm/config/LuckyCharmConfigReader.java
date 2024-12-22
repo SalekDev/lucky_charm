@@ -19,7 +19,7 @@ public class LuckyCharmConfigReader implements IMixinConfigPlugin {
     private static final String TEXT = "[ConfigReader]: ";
     private static final ImmutableList.Builder<String> EXCEPT = ImmutableList.builder();
     public enum Options {
-        HyperLoot(true), Chest(true), Archaeology(true);
+        HyperLoot(true), Chest(true), Archaeology(true), TrialChambers(true);
         private boolean isEnabled;
         Options(boolean isEnabled) {
             this.isEnabled = isEnabled;
@@ -36,6 +36,7 @@ public class LuckyCharmConfigReader implements IMixinConfigPlugin {
                         "doHyperLoot: true",
                         "replaceChestLootTables: true",
                         "replaceArchaeologyLootTables: true",
+                        "replaceTrialChambersLootTables: true",
                         "exceptions: []"
                 ), StandardCharsets.UTF_8, StandardOpenOption.WRITE);
                 LuckyCharm.LOGGER.info(TEXT + "Successfully wrote config file");

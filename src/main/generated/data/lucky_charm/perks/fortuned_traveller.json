@@ -1,7 +1,7 @@
 {
   "attribute_modifier": {
-    "modified_attribute": "minecraft:generic.luck",
-    "name": "Fortuned Traveller",
+    "modified_attribute": "minecraft:luck",
+    "name": "fortuned_traveller",
     "operation": "add_value",
     "value": 1.0
   },

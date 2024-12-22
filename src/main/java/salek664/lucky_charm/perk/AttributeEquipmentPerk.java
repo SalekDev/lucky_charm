@@ -2,11 +2,12 @@ package salek664.lucky_charm.perk;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.client.item.TooltipType;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.Item;
-import net.minecraft.item.TooltipAppender;
+import net.minecraft.item.tooltip.TooltipAppender;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
@@ -25,7 +26,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public record AttributeEquipmentPerk(AttributeModifier attributeModifier, Text name, boolean showInTooltip) implements TooltipAppender {
-    public static final Text PERKS_TEXT = Text.translatable(Util.createTranslationKey("item", new Identifier(LuckyCharm.MOD_ID, "perks")))
+    public static final Text PERKS_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.of(LuckyCharm.MOD_ID, "perks")))
             .formatted(Formatting.GRAY);
     public static final Codec<AttributeEquipmentPerk> CODEC = RecordCodecBuilder.create(
             instance -> instance.group(
@@ -48,8 +49,8 @@ public record AttributeEquipmentPerk(AttributeModifier attributeModifier, Text n
     public void appendTooltip(Item.TooltipContext context, Consumer<Text> tooltip, TooltipType type) {
         if (this.showInTooltip) tooltip.accept(ScreenTexts.space().append(this.name));
     }
-    public EntityAttributeModifier extractNewModifier() {
-        return new EntityAttributeModifier(this.attributeModifier().name(), this.attributeModifier().value(), this.attributeModifier().operation());
+    public EntityAttributeModifier extractNewModifier(String customId) {
+        return new EntityAttributeModifier(Identifier.of(LuckyCharm.MOD_ID, this.attributeModifier().name() + "." + customId), this.attributeModifier().value(), this.attributeModifier().operation());
     }
     public boolean equals(AttributeEquipmentPerk perk) {
         return perk.name().getString().equals(this.name.getString());

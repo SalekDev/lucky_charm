@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier;
 import salek664.lucky_charm.LuckyCharm;
 
 public class LuckyCharmItemGroups {
-    public static final ItemGroup MAIN = Registry.register(Registries.ITEM_GROUP, new Identifier(LuckyCharm.MOD_ID, "lucky_charm"),
+    public static final ItemGroup MAIN = Registry.register(Registries.ITEM_GROUP, Identifier.of(LuckyCharm.MOD_ID, "lucky_charm"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.lucky_charm"))
                     .icon(() -> new ItemStack(LuckyCharmItems.FOURLEAF_CLOVER)).entries(((displayContext, entries) -> {
                         entries.add(LuckyCharmItems.FOURLEAF_CLOVER);

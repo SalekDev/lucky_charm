@@ -1,5 +1,6 @@
 package salek664.lucky_charm.perk;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.SmithingTemplateItem;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.resource.featuretoggle.FeatureFlag;
@@ -17,9 +18,9 @@ public class PerkSmithingTemplate extends SmithingTemplateItem {
                                 Text additionsSlotDescriptionText,
                                 List<Identifier> emptyBaseSlotTextures,
                                 List<Identifier> emptyAdditionsSlotTextures,
-                                RegistryKey<AttributeEquipmentPerk> perk,
-                                FeatureFlag... requiredFeatures) {
-        super(appliesToText, ingredientsText, titleText, baseSlotDescriptionText, additionsSlotDescriptionText, emptyBaseSlotTextures, emptyAdditionsSlotTextures, requiredFeatures);
+                                Item.Settings settings,
+                                RegistryKey<AttributeEquipmentPerk> perk) {
+        super(appliesToText, ingredientsText, baseSlotDescriptionText, additionsSlotDescriptionText, emptyBaseSlotTextures, emptyAdditionsSlotTextures, settings);
         this.perk = perk;
     }
 }

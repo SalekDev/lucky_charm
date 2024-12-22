@@ -1,6 +1,6 @@
 package salek664.lucky_charm.loot;
 
-import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
+import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.block.Blocks;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
@@ -9,8 +9,9 @@ import salek664.lucky_charm.item.LuckyCharmItems;
 
 public class LuckyCharmBlockLootTableModifiers {
     public static void registerModifiers() {
-        LootTableEvents.MODIFY.register(((key, tableBuilder, source) -> {
-            if (Blocks.SHORT_GRASS.getLootTableKey() == key || Blocks.TALL_GRASS.getLootTableKey() == key) {
+        LootTableEvents.MODIFY.register(((key, tableBuilder, source, registries) -> {
+            if (Blocks.SHORT_GRASS.getLootTableKey().isEmpty() || Blocks.TALL_GRASS.getLootTableKey().isEmpty()) return;
+            if (Blocks.SHORT_GRASS.getLootTableKey().get() == key || Blocks.TALL_GRASS.getLootTableKey().get() == key) {
                 tableBuilder
                         .pool(
                         LootPool.builder()

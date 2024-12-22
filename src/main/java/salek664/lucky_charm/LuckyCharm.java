@@ -14,6 +14,7 @@ import salek664.lucky_charm.perk.LuckyCharmPerks;
 import salek664.lucky_charm.perk.PerkDataComponent;
 import salek664.lucky_charm.perk.PerkTrimRecipe;
 import salek664.lucky_charm.loot.LuckyCharmBlockLootTableModifiers;
+import salek664.lucky_charm.recipe.LuckyCharmRecipes;
 
 public class LuckyCharm implements ModInitializer {
 	public static final String MOD_ID = "lucky_charm";
@@ -26,6 +27,7 @@ public class LuckyCharm implements ModInitializer {
 		LOGGER.info("Initializing lucky charm mod");
 		LuckyCharmLootTableLoader.loadSettings(LuckyCharmConfigReader.getCurrentConfig());
 		LuckyCharmItems.registerItems();
+		LuckyCharmRecipes.registerRecipes();
 		LuckyCharmItemGroups.registerItemGroups();
 		LuckyCharmBlockLootTableModifiers.registerModifiers();
 		PerkTrimRecipe.registerSerializer();

@@ -1,11 +1,12 @@
 package salek664.lucky_charm.mixin.item;
 
+import com.llamalad7.mixinextras.sugar.Local;
 import net.fabricmc.fabric.api.item.v1.FabricItemStack;
-import net.minecraft.client.item.TooltipType;
 import net.minecraft.component.ComponentHolder;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
@@ -30,11 +31,13 @@ public abstract class ItemStackMixin implements ComponentHolder, FabricItemStack
             perksList.forEach(equipmentPerk -> equipmentPerk.appendTooltip(context, textConsumer, type));
         }
     }
-    @Inject(method = "Lnet/minecraft/item/ItemStack;getTooltip(Lnet/minecraft/item/Item$TooltipContext;Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/client/item/TooltipType;)Ljava/util/List;",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;appendTooltip(Lnet/minecraft/component/DataComponentType;Lnet/minecraft/item/Item$TooltipContext;Ljava/util/function/Consumer;Lnet/minecraft/client/item/TooltipType;)V", ordinal = 0),
-            locals = LocalCapture.CAPTURE_FAILSOFT)
+    @Inject(
+            method = "Lnet/minecraft/item/ItemStack;getTooltip(Lnet/minecraft/item/Item$TooltipContext;Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/item/tooltip/TooltipType;)Ljava/util/List;",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/item/Item;appendTooltip(Lnet/minecraft/item/ItemStack;Lnet/minecraft/item/Item$TooltipContext;Ljava/util/List;Lnet/minecraft/item/tooltip/TooltipType;)V", ordinal = 0)
+    )
     private void addPerksToTooltip(Item.TooltipContext context, PlayerEntity player, TooltipType type,
-                                   CallbackInfoReturnable<List<Text>> ci, List<Text> list, MutableText mutableText, Consumer<Text> consumer) {
+                                   CallbackInfoReturnable<List<Text>> ci,
+                                   @Local(ordinal = 0) Consumer<Text> consumer) {
         this.appendPerksTooltip(context, consumer, type);
     }
 }

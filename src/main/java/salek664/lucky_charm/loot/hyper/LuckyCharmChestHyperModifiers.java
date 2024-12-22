@@ -1,7 +1,8 @@
 package salek664.lucky_charm.loot.hyper;
 
-import net.fabricmc.fabric.api.loot.v2.LootTableSource;
+import net.fabricmc.fabric.api.loot.v3.LootTableSource;
 import net.minecraft.block.Blocks;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Items;
@@ -16,6 +17,8 @@ import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.potion.Potions;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.InstrumentTags;
 import net.minecraft.registry.tag.StructureTags;
 import net.minecraft.text.Text;
@@ -25,7 +28,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class LuckyCharmChestHyperModifiers {
-    public static Optional<LootTable> attemptReplace(RegistryKey<LootTable> key, LootTableSource source, boolean enabled, List<String> excepts) {
+    public static Optional<LootTable> attemptReplace(RegistryKey<LootTable> key, LootTableSource source, boolean enabled, List<String> excepts,
+                                                     RegistryWrapper.WrapperLookup registries) {
         String k = key.getValue().toUnderscoreSeparatedString();
         for (String except : excepts) {
             if (k.endsWith(except)) {
@@ -35,51 +39,51 @@ public class LuckyCharmChestHyperModifiers {
         }
         if (enabled && source.isBuiltin()) {
             if (LootTables.ABANDONED_MINESHAFT_CHEST == key) {
-                return Optional.of(abandonedMineshaftChest().build());
+                return Optional.of(abandonedMineshaftChest(registries).build());
             } else if (LootTables.BASTION_BRIDGE_CHEST == key) {
-                return Optional.of(bastionBridgeChest().build());
+                return Optional.of(bastionBridgeChest(registries).build());
             } else if (LootTables.BASTION_HOGLIN_STABLE_CHEST == key) {
-                return Optional.of(bastionHoglinStableChest().build());
+                return Optional.of(bastionHoglinStableChest(registries).build());
             } else if (LootTables.BASTION_OTHER_CHEST == key) {
-                return Optional.of(bastionOtherChest().build());
+                return Optional.of(bastionOtherChest(registries).build());
             } else if (LootTables.BASTION_TREASURE_CHEST == key) {
-                return Optional.of(bastionTreasureChest().build());
+                return Optional.of(bastionTreasureChest(registries).build());
             } else if (LootTables.BURIED_TREASURE_CHEST == key) {
                 return Optional.of(buriedTreasureChest().build());
             } else if (LootTables.ANCIENT_CITY_CHEST == key) {
-                return Optional.of(ancientCityChest().build());
+                return Optional.of(ancientCityChest(registries).build());
             } else if (LootTables.ANCIENT_CITY_ICE_BOX_CHEST == key) {
                 return Optional.of(ancientCityIceboxChest().build());
             } else if (LootTables.DESERT_PYRAMID_CHEST == key) {
-                return Optional.of(desertPyramidChest().build());
+                return Optional.of(desertPyramidChest(registries).build());
             } else if (LootTables.END_CITY_TREASURE_CHEST == key) {
-                return Optional.of(endCityTreasureChest().build());
+                return Optional.of(endCityTreasureChest(registries).build());
             } else if (LootTables.IGLOO_CHEST_CHEST == key) {
                 return Optional.of(iglooChest().build());
             } else if (LootTables.JUNGLE_TEMPLE_CHEST == key) {
-                return Optional.of(jungleTempleChest().build());
+                return Optional.of(jungleTempleChest(registries).build());
             } else if (LootTables.NETHER_BRIDGE_CHEST == key) {
                 return Optional.of(netherBridgeChest().build());
             } else if (LootTables.PILLAGER_OUTPOST_CHEST == key) {
-                return Optional.of(pillagerOutpostChest().build());
+                return Optional.of(pillagerOutpostChest(registries).build());
             } else if (LootTables.SHIPWRECK_MAP_CHEST == key) {
                 return Optional.of(shipwreckMapChest().build());
             } else if (LootTables.SHIPWRECK_SUPPLY_CHEST == key) {
-                return Optional.of(shipwreckSupplyChest().build());
+                return Optional.of(shipwreckSupplyChest(registries).build());
             } else if (LootTables.SHIPWRECK_TREASURE_CHEST == key) {
                 return Optional.of(shipwreckTreasureChest().build());
             } else if (LootTables.SIMPLE_DUNGEON_CHEST == key) {
-                return Optional.of(simpleDungeonChest().build());
+                return Optional.of(simpleDungeonChest(registries).build());
             } else if (LootTables.STRONGHOLD_CORRIDOR_CHEST == key) {
-                return Optional.of(strongholdCorridorChest().build());
+                return Optional.of(strongholdCorridorChest(registries).build());
             } else if (LootTables.STRONGHOLD_CROSSING_CHEST == key) {
-                return Optional.of(strongholdCrossingChest().build());
+                return Optional.of(strongholdCrossingChest(registries).build());
             } else if (LootTables.STRONGHOLD_LIBRARY_CHEST == key) {
-                return Optional.of(strongholdLibraryChest().build());
+                return Optional.of(strongholdLibraryChest(registries).build());
             } else if (LootTables.UNDERWATER_RUIN_BIG_CHEST == key) {
-                return Optional.of(underwaterRuinBigChest().build());
+                return Optional.of(underwaterRuinBigChest(registries).build());
             } else if (LootTables.UNDERWATER_RUIN_SMALL_CHEST == key) {
-                return Optional.of(underwaterRuinSmallChest().build());
+                return Optional.of(underwaterRuinSmallChest(registries).build());
             } else if (LootTables.VILLAGE_WEAPONSMITH_CHEST == key) {
                 return Optional.of(villageWeaponsmithChest().build());
             } else if (LootTables.VILLAGE_TOOLSMITH_CHEST == key) {
@@ -113,14 +117,14 @@ public class LuckyCharmChestHyperModifiers {
             } else if (LootTables.VILLAGE_DESERT_HOUSE_CHEST == key) {
                 return Optional.of(villageDesertHouseChest().build());
             } else if (LootTables.RUINED_PORTAL_CHEST == key) {
-                return Optional.of(ruinedPortalChest().build());
+                return Optional.of(ruinedPortalChest(registries).build());
             } else if (LootTables.WOODLAND_MANSION_CHEST == key) {
-                return Optional.of(woodlandMansionChest().build());
+                return Optional.of(woodlandMansionChest(registries).build());
             }
         }
         return Optional.empty();
     }
-    public static LootTable.Builder abandonedMineshaftChest() {
+    public static LootTable.Builder abandonedMineshaftChest(RegistryWrapper.WrapperLookup registries) {
         return LootTable.builder()
                 .pool(
                         LootPool.builder()
@@ -128,7 +132,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.GOLDEN_APPLE).weight(20).quality(4))
                                 .with(ItemEntry.builder(Items.ENCHANTED_GOLDEN_APPLE).quality(8))
                                 .with(ItemEntry.builder(Items.NAME_TAG).weight(30).quality(2))
-                                .with(ItemEntry.builder(Items.BOOK).weight(10).quality(6).apply(EnchantRandomlyLootFunction.builder()))
+                                .with(ItemEntry.builder(Items.BOOK).weight(10).quality(6).apply(EnchantRandomlyLootFunction.builder(registries)))
                                 .with(ItemEntry.builder(Items.IRON_PICKAXE).weight(5).quality(1))
                                 .with(EmptyEntry.builder().weight(5).quality(0))
                 )
@@ -157,7 +161,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Blocks.TORCH).weight(15).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 16.0F))))
                 );
     }
-    public static LootTable.Builder bastionBridgeChest() {
+    public static LootTable.Builder bastionBridgeChest(RegistryWrapper.WrapperLookup registries) {
         return LootTable.builder()
                 .pool(
                         LootPool.builder()
@@ -170,7 +174,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(
                                         ItemEntry.builder(Items.CROSSBOW)
                                                 .apply(SetDamageLootFunction.builder(UniformLootNumberProvider.create(0.1F, 0.5F)))
-                                                .apply(EnchantRandomlyLootFunction.builder())
+                                                .apply(EnchantRandomlyLootFunction.builder(registries))
                                                 .quality(2)
                                 )
                                 .with(ItemEntry.builder(Items.SPECTRAL_ARROW).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(10.0F, 28.0F))))
@@ -183,31 +187,31 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(
                                         ItemEntry.builder(Items.GOLDEN_CHESTPLATE)
                                                 .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)))
-                                                .apply(EnchantRandomlyLootFunction.builder())
+                                                .apply(EnchantRandomlyLootFunction.builder(registries))
                                                 .quality(2)
                                 )
                                 .with(
                                         ItemEntry.builder(Items.GOLDEN_HELMET)
                                                 .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)))
-                                                .apply(EnchantRandomlyLootFunction.builder())
+                                                .apply(EnchantRandomlyLootFunction.builder(registries))
                                                 .quality(2)
                                 )
                                 .with(
                                         ItemEntry.builder(Items.GOLDEN_LEGGINGS)
                                                 .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)))
-                                                .apply(EnchantRandomlyLootFunction.builder())
+                                                .apply(EnchantRandomlyLootFunction.builder(registries))
                                                 .quality(2)
                                 )
                                 .with(
                                         ItemEntry.builder(Items.GOLDEN_BOOTS)
                                                 .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)))
-                                                .apply(EnchantRandomlyLootFunction.builder())
+                                                .apply(EnchantRandomlyLootFunction.builder(registries))
                                                 .quality(2)
                                 )
                                 .with(
                                         ItemEntry.builder(Items.GOLDEN_AXE)
                                                 .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)))
-                                                .apply(EnchantRandomlyLootFunction.builder())
+                                                .apply(EnchantRandomlyLootFunction.builder(registries))
                                                 .quality(2)
                                 )
                 )
@@ -234,7 +238,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE).weight(1).quality(4))
                 );
     }
-    public static LootTable.Builder bastionHoglinStableChest() {
+    public static LootTable.Builder bastionHoglinStableChest(RegistryWrapper.WrapperLookup registries) {
         return LootTable.builder()
                 .pool(
                         LootPool.builder()
@@ -243,14 +247,14 @@ public class LuckyCharmChestHyperModifiers {
                                         ItemEntry.builder(Items.DIAMOND_SHOVEL)
                                                 .weight(15).quality(4)
                                                 .apply(SetDamageLootFunction.builder(UniformLootNumberProvider.create(0.15F, 0.8F)))
-                                                .apply(EnchantRandomlyLootFunction.builder())
+                                                .apply(EnchantRandomlyLootFunction.builder(registries))
                                 )
                                 .with(
                                         ItemEntry.builder(Items.DIAMOND_PICKAXE)
                                                 .weight(12).quality(4)
                                                 .apply(SetDamageLootFunction.builder(UniformLootNumberProvider.create(0.15F, 0.95F)))
                                                 .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)))
-                                                .apply(EnchantRandomlyLootFunction.builder())
+                                                .apply(EnchantRandomlyLootFunction.builder(registries))
                                 )
                                 .with(ItemEntry.builder(Items.NETHERITE_SCRAP).quality(6).weight(8).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))))
                                 .with(ItemEntry.builder(Items.ANCIENT_DEBRIS).quality(6).weight(12).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))))
@@ -266,7 +270,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(
                                         ItemEntry.builder(Items.GOLDEN_AXE)
                                                 .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)))
-                                                .apply(EnchantRandomlyLootFunction.builder())
+                                                .apply(EnchantRandomlyLootFunction.builder(registries))
                                                 .quality(3)
                                 )
                                 .with(ItemEntry.builder(Blocks.CRYING_OBSIDIAN).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 5.0F))))
@@ -296,7 +300,8 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE).weight(1).quality(4))
                 );
     }
-    public static LootTable.Builder bastionOtherChest() {
+    public static LootTable.Builder bastionOtherChest(RegistryWrapper.WrapperLookup registries) {
+        RegistryWrapper.Impl<Enchantment> impl = registries.getOrThrow(RegistryKeys.ENCHANTMENT);
         return LootTable.builder()
                 .pool(
                         LootPool.builder()
@@ -305,14 +310,14 @@ public class LuckyCharmChestHyperModifiers {
                                         ItemEntry.builder(Items.DIAMOND_PICKAXE)
                                                 .weight(6).quality(4)
                                                 .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)))
-                                                .apply(EnchantRandomlyLootFunction.builder())
+                                                .apply(EnchantRandomlyLootFunction.builder(registries))
                                 )
                                 .with(ItemEntry.builder(Items.DIAMOND_SHOVEL).quality(4).weight(6).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))))
                                 .with(
                                         ItemEntry.builder(Items.CROSSBOW)
                                                 .weight(6).quality(3)
                                                 .apply(SetDamageLootFunction.builder(UniformLootNumberProvider.create(0.1F, 0.9F)))
-                                                .apply(EnchantRandomlyLootFunction.builder())
+                                                .apply(EnchantRandomlyLootFunction.builder(registries))
                                 )
                                 .with(ItemEntry.builder(Items.ANCIENT_DEBRIS).weight(12).quality(6).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))))
                                 .with(ItemEntry.builder(Items.NETHERITE_SCRAP).weight(4).quality(6).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))))
@@ -321,7 +326,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.MUSIC_DISC_PIGSTEP).weight(5).quality(3).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))))
                                 .with(ItemEntry.builder(Items.GOLDEN_CARROT).weight(12).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(6.0F, 17.0F))))
                                 .with(ItemEntry.builder(Items.GOLDEN_APPLE).weight(9).quality(2).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))))
-                                .with(ItemEntry.builder(Items.BOOK).weight(10).quality(2).apply(new EnchantRandomlyLootFunction.Builder().add(Enchantments.SOUL_SPEED)))
+                                .with(ItemEntry.builder(Items.BOOK).weight(10).quality(2).apply(new EnchantRandomlyLootFunction.Builder().option(impl.getOrThrow(Enchantments.SOUL_SPEED))))
                 )
                 .pool(
                         LootPool.builder()
@@ -331,19 +336,19 @@ public class LuckyCharmChestHyperModifiers {
                                                 .weight(2).quality(3)
                                                 .apply(SetDamageLootFunction.builder(UniformLootNumberProvider.create(0.1F, 0.9F)))
                                                 .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)))
-                                                .apply(EnchantRandomlyLootFunction.builder())
+                                                .apply(EnchantRandomlyLootFunction.builder(registries))
                                 )
                                 .with(ItemEntry.builder(Blocks.IRON_BLOCK).weight(2).quality(2).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))))
                                 .with(
                                         ItemEntry.builder(Items.GOLDEN_BOOTS)
                                                 .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)))
-                                                .apply(new EnchantRandomlyLootFunction.Builder().add(Enchantments.SOUL_SPEED))
+                                                .apply(new EnchantRandomlyLootFunction.Builder().option(impl.getOrThrow(Enchantments.SOUL_SPEED)))
                                                 .quality(2)
                                 )
                                 .with(
                                         ItemEntry.builder(Items.GOLDEN_AXE)
                                                 .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)))
-                                                .apply(EnchantRandomlyLootFunction.builder())
+                                                .apply(EnchantRandomlyLootFunction.builder(registries))
                                                 .quality(2)
                                 )
                                 .with(ItemEntry.builder(Blocks.GOLD_BLOCK).quality(4).weight(2).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))))
@@ -384,12 +389,12 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE).weight(1).quality(4))
                 );
     }
-    public static LootTable.Builder bastionTreasureChest() {
+    public static LootTable.Builder bastionTreasureChest(RegistryWrapper.WrapperLookup registries) {
         return LootTable.builder()
                 .pool(
                         LootPool.builder()
                                 .rolls(ConstantLootNumberProvider.create(3.0F))
-                                .with(ItemEntry.builder(Items.NETHERITE_INGOT).weight(15).quality(8).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))))
+                                .with(ItemEntry.builder(Items.NETHERITE_INGOT).weight(15).quality(6).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))))
                                 .with(ItemEntry.builder(Blocks.ANCIENT_DEBRIS).weight(10).quality(5).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))))
                                 .with(ItemEntry.builder(Items.NETHERITE_SCRAP).weight(8).quality(5).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))))
                                 .with(ItemEntry.builder(Blocks.ANCIENT_DEBRIS).weight(4).quality(5).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F))))
@@ -397,35 +402,35 @@ public class LuckyCharmChestHyperModifiers {
                                         ItemEntry.builder(Items.DIAMOND_SWORD)
                                                 .weight(6)
                                                 .apply(SetDamageLootFunction.builder(UniformLootNumberProvider.create(0.8F, 1.0F)))
-                                                .apply(EnchantRandomlyLootFunction.builder())
+                                                .apply(EnchantRandomlyLootFunction.builder(registries))
                                                 .quality(5)
                                 )
                                 .with(
                                         ItemEntry.builder(Items.DIAMOND_CHESTPLATE)
                                                 .weight(6)
                                                 .apply(SetDamageLootFunction.builder(UniformLootNumberProvider.create(0.8F, 1.0F)))
-                                                .apply(EnchantRandomlyLootFunction.builder())
+                                                .apply(EnchantRandomlyLootFunction.builder(registries))
                                                 .quality(5)
                                 )
                                 .with(
                                         ItemEntry.builder(Items.DIAMOND_HELMET)
                                                 .weight(6)
                                                 .apply(SetDamageLootFunction.builder(UniformLootNumberProvider.create(0.8F, 1.0F)))
-                                                .apply(EnchantRandomlyLootFunction.builder())
+                                                .apply(EnchantRandomlyLootFunction.builder(registries))
                                                 .quality(5)
                                 )
                                 .with(
                                         ItemEntry.builder(Items.DIAMOND_LEGGINGS)
                                                 .weight(6)
                                                 .apply(SetDamageLootFunction.builder(UniformLootNumberProvider.create(0.8F, 1.0F)))
-                                                .apply(EnchantRandomlyLootFunction.builder())
+                                                .apply(EnchantRandomlyLootFunction.builder(registries))
                                                 .quality(5)
                                 )
                                 .with(
                                         ItemEntry.builder(Items.DIAMOND_BOOTS)
                                                 .weight(6)
                                                 .apply(SetDamageLootFunction.builder(UniformLootNumberProvider.create(0.8F, 1.0F)))
-                                                .apply(EnchantRandomlyLootFunction.builder())
+                                                .apply(EnchantRandomlyLootFunction.builder(registries))
                                                 .quality(5)
                                 )
                                 .with(ItemEntry.builder(Items.DIAMOND_SWORD).weight(6).quality(2))
@@ -434,7 +439,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.DIAMOND_BOOTS).weight(5).quality(2))
                                 .with(ItemEntry.builder(Items.DIAMOND_LEGGINGS).weight(5).quality(2))
                                 .with(ItemEntry.builder(Items.DIAMOND).weight(5).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 6.0F))))
-                                .with(ItemEntry.builder(Items.ENCHANTED_GOLDEN_APPLE).weight(2).quality(8).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))))
+                                .with(ItemEntry.builder(Items.ENCHANTED_GOLDEN_APPLE).weight(2).quality(6).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))))
                 )
                 .pool(
                         LootPool.builder()
@@ -497,7 +502,8 @@ public class LuckyCharmChestHyperModifiers {
                                 .apply(SetPotionLootFunction.builder(Potions.WATER_BREATHING))
                 );
     }
-    public static LootTable.Builder ancientCityChest() {
+    public static LootTable.Builder ancientCityChest(RegistryWrapper.WrapperLookup registries) {
+        RegistryWrapper.Impl<Enchantment> impl = registries.getOrThrow(RegistryKeys.ENCHANTMENT);
         return LootTable.builder()
                 .pool(
                         LootPool.builder()
@@ -512,7 +518,7 @@ public class LuckyCharmChestHyperModifiers {
                                                 .weight(2).quality(3)
                                                 .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F)))
                                                 .apply(SetDamageLootFunction.builder(UniformLootNumberProvider.create(0.8F, 1.0F)))
-                                                .apply(EnchantWithLevelsLootFunction.builder(UniformLootNumberProvider.create(30.0F, 50.0F)).allowTreasureEnchantments())
+                                                .apply(EnchantWithLevelsLootFunction.builder(registries, UniformLootNumberProvider.create(30.0F, 50.0F)))
                                 )
                                 .with(ItemEntry.builder(Items.LEAD).weight(2).quality(1).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))))
                                 .with(ItemEntry.builder(Items.DIAMOND_HORSE_ARMOR).weight(2).quality(2).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))))
@@ -522,9 +528,9 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(
                                         ItemEntry.builder(Items.DIAMOND_LEGGINGS)
                                                 .weight(2).quality(4)
-                                                .apply(EnchantWithLevelsLootFunction.builder(UniformLootNumberProvider.create(30.0F, 50.0F)).allowTreasureEnchantments())
+                                                .apply(EnchantWithLevelsLootFunction.builder(registries, UniformLootNumberProvider.create(30.0F, 50.0F)))
                                 )
-                                .with(ItemEntry.builder(Items.BOOK).quality(3).weight(3).apply(new EnchantRandomlyLootFunction.Builder().add(Enchantments.SWIFT_SNEAK)))
+                                .with(ItemEntry.builder(Items.BOOK).quality(3).weight(3).apply(new EnchantRandomlyLootFunction.Builder().option(impl.getOrThrow(Enchantments.SWIFT_SNEAK))))
                                 .with(ItemEntry.builder(Items.SCULK).weight(3).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(4.0F, 10.0F))))
                                 .with(ItemEntry.builder(Items.SCULK_SENSOR).weight(3).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.CANDLE).weight(3).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 4.0F))))
@@ -534,7 +540,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(
                                         ItemEntry.builder(Items.IRON_LEGGINGS)
                                                 .weight(3).quality(3)
-                                                .apply(EnchantWithLevelsLootFunction.builder(UniformLootNumberProvider.create(20.0F, 39.0F)).allowTreasureEnchantments())
+                                                .apply(EnchantWithLevelsLootFunction.builder(registries, UniformLootNumberProvider.create(20.0F, 39.0F)))
                                 )
                                 .with(ItemEntry.builder(Items.ECHO_SHARD).weight(4).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.DISC_FRAGMENT_5).weight(4).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
@@ -544,7 +550,7 @@ public class LuckyCharmChestHyperModifiers {
                                                 .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F)))
                                                 .apply(SetPotionLootFunction.builder(Potions.STRONG_REGENERATION))
                                 )
-                                .with(ItemEntry.builder(Items.BOOK).weight(5).quality(4).apply(EnchantRandomlyLootFunction.builder()))
+                                .with(ItemEntry.builder(Items.BOOK).weight(5).quality(4).apply(EnchantRandomlyLootFunction.builder(registries)))
                                 .with(ItemEntry.builder(Items.BOOK).weight(5).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(3.0F, 10.0F))))
                                 .with(ItemEntry.builder(Items.BONE).weight(5).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 15.0F))))
                                 .with(ItemEntry.builder(Items.SOUL_TORCH).weight(5).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 15.0F))))
@@ -579,7 +585,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.SNOWBALL).weight(4).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 6.0F))))
                 );
     }
-    public static LootTable.Builder desertPyramidChest() {
+    public static LootTable.Builder desertPyramidChest(RegistryWrapper.WrapperLookup registries) {
         return LootTable.builder()
                 .pool(
                         LootPool.builder()
@@ -595,7 +601,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.IRON_HORSE_ARMOR).weight(15).quality(1))
                                 .with(ItemEntry.builder(Items.GOLDEN_HORSE_ARMOR).weight(10).quality(1))
                                 .with(ItemEntry.builder(Items.DIAMOND_HORSE_ARMOR).weight(5).quality(2))
-                                .with(ItemEntry.builder(Items.BOOK).weight(20).quality(4).apply(EnchantRandomlyLootFunction.builder()))
+                                .with(ItemEntry.builder(Items.BOOK).weight(20).quality(4).apply(EnchantRandomlyLootFunction.builder(registries)))
                                 .with(ItemEntry.builder(Items.GOLDEN_APPLE).weight(20).quality(3))
                                 .with(ItemEntry.builder(Items.ENCHANTED_GOLDEN_APPLE).weight(2).quality(4))
                                 .with(ItemEntry.builder(LuckyCharmItems.FORTUNE_GEM).weight(5).quality(4))
@@ -618,7 +624,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.DUNE_ARMOR_TRIM_SMITHING_TEMPLATE).weight(5).quality(3).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F))))
                 );
     }
-    public static LootTable.Builder endCityTreasureChest() {
+    public static LootTable.Builder endCityTreasureChest(RegistryWrapper.WrapperLookup registries) {
         return LootTable.builder()
                 .pool(
                         LootPool.builder()
@@ -635,72 +641,72 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(
                                         ItemEntry.builder(Items.DIAMOND_SWORD)
                                                 .weight(3).quality(5)
-                                                .apply(EnchantWithLevelsLootFunction.builder(UniformLootNumberProvider.create(20.0F, 39.0F)).allowTreasureEnchantments())
+                                                .apply(EnchantWithLevelsLootFunction.builder(registries, UniformLootNumberProvider.create(20.0F, 39.0F)))
                                 )
                                 .with(
                                         ItemEntry.builder(Items.DIAMOND_BOOTS)
                                                 .weight(3).quality(5)
-                                                .apply(EnchantWithLevelsLootFunction.builder(UniformLootNumberProvider.create(20.0F, 39.0F)).allowTreasureEnchantments())
+                                                .apply(EnchantWithLevelsLootFunction.builder(registries, UniformLootNumberProvider.create(20.0F, 39.0F)))
                                 )
                                 .with(
                                         ItemEntry.builder(Items.DIAMOND_CHESTPLATE)
                                                 .weight(3).quality(5)
-                                                .apply(EnchantWithLevelsLootFunction.builder(UniformLootNumberProvider.create(20.0F, 39.0F)).allowTreasureEnchantments())
+                                                .apply(EnchantWithLevelsLootFunction.builder(registries, UniformLootNumberProvider.create(20.0F, 39.0F)))
                                 )
                                 .with(
                                         ItemEntry.builder(Items.DIAMOND_LEGGINGS)
                                                 .weight(3).quality(5)
-                                                .apply(EnchantWithLevelsLootFunction.builder(UniformLootNumberProvider.create(20.0F, 39.0F)).allowTreasureEnchantments())
+                                                .apply(EnchantWithLevelsLootFunction.builder(registries, UniformLootNumberProvider.create(20.0F, 39.0F)))
                                 )
                                 .with(
                                         ItemEntry.builder(Items.DIAMOND_HELMET)
                                                 .weight(3).quality(5)
-                                                .apply(EnchantWithLevelsLootFunction.builder(UniformLootNumberProvider.create(20.0F, 39.0F)).allowTreasureEnchantments())
+                                                .apply(EnchantWithLevelsLootFunction.builder(registries,  UniformLootNumberProvider.create(20.0F, 39.0F)))
                                 )
                                 .with(
                                         ItemEntry.builder(Items.DIAMOND_PICKAXE)
                                                 .weight(3).quality(5)
-                                                .apply(EnchantWithLevelsLootFunction.builder(UniformLootNumberProvider.create(20.0F, 39.0F)).allowTreasureEnchantments())
+                                                .apply(EnchantWithLevelsLootFunction.builder(registries, UniformLootNumberProvider.create(20.0F, 39.0F)))
                                 )
                                 .with(
                                         ItemEntry.builder(Items.DIAMOND_SHOVEL)
                                                 .weight(3).quality(5)
-                                                .apply(EnchantWithLevelsLootFunction.builder(UniformLootNumberProvider.create(20.0F, 39.0F)).allowTreasureEnchantments())
+                                                .apply(EnchantWithLevelsLootFunction.builder(registries, UniformLootNumberProvider.create(20.0F, 39.0F)))
                                 )
                                 .with(
                                         ItemEntry.builder(Items.IRON_SWORD)
                                                 .weight(3).quality(4)
-                                                .apply(EnchantWithLevelsLootFunction.builder(UniformLootNumberProvider.create(20.0F, 39.0F)).allowTreasureEnchantments())
+                                                .apply(EnchantWithLevelsLootFunction.builder(registries, UniformLootNumberProvider.create(20.0F, 39.0F)))
                                 )
                                 .with(
                                         ItemEntry.builder(Items.IRON_BOOTS)
                                                 .weight(3).quality(4)
-                                                .apply(EnchantWithLevelsLootFunction.builder(UniformLootNumberProvider.create(20.0F, 39.0F)).allowTreasureEnchantments())
+                                                .apply(EnchantWithLevelsLootFunction.builder(registries, UniformLootNumberProvider.create(20.0F, 39.0F)))
                                 )
                                 .with(
                                         ItemEntry.builder(Items.IRON_CHESTPLATE)
                                                 .weight(3).quality(4)
-                                                .apply(EnchantWithLevelsLootFunction.builder(UniformLootNumberProvider.create(20.0F, 39.0F)).allowTreasureEnchantments())
+                                                .apply(EnchantWithLevelsLootFunction.builder(registries, UniformLootNumberProvider.create(20.0F, 39.0F)))
                                 )
                                 .with(
                                         ItemEntry.builder(Items.IRON_LEGGINGS)
                                                 .weight(3).quality(4)
-                                                .apply(EnchantWithLevelsLootFunction.builder(UniformLootNumberProvider.create(20.0F, 39.0F)).allowTreasureEnchantments())
+                                                .apply(EnchantWithLevelsLootFunction.builder(registries, UniformLootNumberProvider.create(20.0F, 39.0F)))
                                 )
                                 .with(
                                         ItemEntry.builder(Items.IRON_HELMET)
                                                 .weight(3).quality(4)
-                                                .apply(EnchantWithLevelsLootFunction.builder(UniformLootNumberProvider.create(20.0F, 39.0F)).allowTreasureEnchantments())
+                                                .apply(EnchantWithLevelsLootFunction.builder(registries, UniformLootNumberProvider.create(20.0F, 39.0F)))
                                 )
                                 .with(
                                         ItemEntry.builder(Items.IRON_PICKAXE)
                                                 .weight(3).quality(4)
-                                                .apply(EnchantWithLevelsLootFunction.builder(UniformLootNumberProvider.create(20.0F, 39.0F)).allowTreasureEnchantments())
+                                                .apply(EnchantWithLevelsLootFunction.builder(registries, UniformLootNumberProvider.create(20.0F, 39.0F)))
                                 )
                                 .with(
                                         ItemEntry.builder(Items.IRON_SHOVEL)
                                                 .weight(3).quality(4)
-                                                .apply(EnchantWithLevelsLootFunction.builder(UniformLootNumberProvider.create(20.0F, 39.0F)).allowTreasureEnchantments())
+                                                .apply(EnchantWithLevelsLootFunction.builder(registries, UniformLootNumberProvider.create(20.0F, 39.0F)))
                                 )
                 )
                 .pool(
@@ -727,7 +733,7 @@ public class LuckyCharmChestHyperModifiers {
                         LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F)).with(ItemEntry.builder(Items.GOLDEN_APPLE))
                 );
     }
-    public static LootTable.Builder jungleTempleChest() {
+    public static LootTable.Builder jungleTempleChest(RegistryWrapper.WrapperLookup registries) {
         return LootTable.builder()
                 .pool(
                         LootPool.builder()
@@ -743,7 +749,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.IRON_HORSE_ARMOR).quality(1))
                                 .with(ItemEntry.builder(Items.GOLDEN_HORSE_ARMOR).quality(1))
                                 .with(ItemEntry.builder(Items.DIAMOND_HORSE_ARMOR).quality(2))
-                                .with(ItemEntry.builder(Items.BOOK).quality(4).apply(EnchantWithLevelsLootFunction.builder(ConstantLootNumberProvider.create(30.0F)).allowTreasureEnchantments()))
+                                .with(ItemEntry.builder(Items.BOOK).quality(4).apply(EnchantWithLevelsLootFunction.builder(registries, ConstantLootNumberProvider.create(30.0F))))
                 )
                 .pool(
                         LootPool.builder()
@@ -778,7 +784,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.RIB_ARMOR_TRIM_SMITHING_TEMPLATE).weight(1).quality(4))
                 );
     }
-    public static LootTable.Builder pillagerOutpostChest() {
+    public static LootTable.Builder pillagerOutpostChest(RegistryWrapper.WrapperLookup registries) {
         return LootTable.builder()
                 .pool(
                         LootPool.builder()
@@ -805,7 +811,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.ARROW).weight(4).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 7.0F))))
                                 .with(ItemEntry.builder(Items.TRIPWIRE_HOOK).weight(3).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.IRON_INGOT).weight(3).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
-                                .with(ItemEntry.builder(Items.BOOK).weight(1).quality(2).apply(EnchantRandomlyLootFunction.builder()))
+                                .with(ItemEntry.builder(Items.BOOK).weight(1).quality(2).apply(EnchantRandomlyLootFunction.builder(registries)))
                 )
                 .pool(
                         LootPool.builder()
@@ -854,7 +860,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.COAST_ARMOR_TRIM_SMITHING_TEMPLATE).weight(1).quality(4).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F))))
                 );
     }
-    public static LootTable.Builder shipwreckSupplyChest() {
+    public static LootTable.Builder shipwreckSupplyChest(RegistryWrapper.WrapperLookup registries) {
         return LootTable.builder()
                 .pool(
                         LootPool.builder()
@@ -884,10 +890,10 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Blocks.BAMBOO).weight(2).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.GUNPOWDER).weight(3).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 5.0F))))
                                 .with(ItemEntry.builder(Blocks.TNT).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 2.0F))))
-                                .with(ItemEntry.builder(Items.LEATHER_HELMET).weight(3).quality(1).apply(EnchantRandomlyLootFunction.builder()))
-                                .with(ItemEntry.builder(Items.LEATHER_CHESTPLATE).weight(3).quality(1).apply(EnchantRandomlyLootFunction.builder()))
-                                .with(ItemEntry.builder(Items.LEATHER_LEGGINGS).weight(3).quality(1).apply(EnchantRandomlyLootFunction.builder()))
-                                .with(ItemEntry.builder(Items.LEATHER_BOOTS).weight(3).quality(1).apply(EnchantRandomlyLootFunction.builder()))
+                                .with(ItemEntry.builder(Items.LEATHER_HELMET).weight(3).quality(1).apply(EnchantRandomlyLootFunction.builder(registries)))
+                                .with(ItemEntry.builder(Items.LEATHER_CHESTPLATE).weight(3).quality(1).apply(EnchantRandomlyLootFunction.builder(registries)))
+                                .with(ItemEntry.builder(Items.LEATHER_LEGGINGS).weight(3).quality(1).apply(EnchantRandomlyLootFunction.builder(registries)))
+                                .with(ItemEntry.builder(Items.LEATHER_BOOTS).weight(3).quality(1).apply(EnchantRandomlyLootFunction.builder(registries)))
                 )
                 .pool(
                         LootPool.builder()
@@ -923,7 +929,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.COAST_ARMOR_TRIM_SMITHING_TEMPLATE).weight(5).quality(2).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F))))
                 );
     }
-    public static LootTable.Builder simpleDungeonChest() {
+    public static LootTable.Builder simpleDungeonChest(RegistryWrapper.WrapperLookup registries) {
         return LootTable.builder()
                 .pool(
                         LootPool.builder()
@@ -938,7 +944,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.GOLDEN_HORSE_ARMOR).weight(10).quality(1))
                                 .with(ItemEntry.builder(Items.IRON_HORSE_ARMOR).weight(15).quality(1))
                                 .with(ItemEntry.builder(Items.DIAMOND_HORSE_ARMOR).weight(5).quality(2))
-                                .with(ItemEntry.builder(Items.BOOK).weight(10).quality(4).apply(EnchantRandomlyLootFunction.builder()))
+                                .with(ItemEntry.builder(Items.BOOK).weight(10).quality(4).apply(EnchantRandomlyLootFunction.builder(registries)))
                 )
                 .pool(
                         LootPool.builder()
@@ -963,7 +969,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.STRING).weight(10).quality(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 8.0F))))
                 );
     }
-    public static LootTable.Builder strongholdCorridorChest() {
+    public static LootTable.Builder strongholdCorridorChest(RegistryWrapper.WrapperLookup registries) {
         return LootTable.builder()
                 .pool(
                         LootPool.builder()
@@ -987,7 +993,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.GOLDEN_HORSE_ARMOR).quality(0))
                                 .with(ItemEntry.builder(Items.DIAMOND_HORSE_ARMOR).quality(1))
                                 .with(ItemEntry.builder(Items.MUSIC_DISC_OTHERSIDE).quality(2))
-                                .with(ItemEntry.builder(Items.BOOK).quality(3).apply(EnchantWithLevelsLootFunction.builder(ConstantLootNumberProvider.create(30.0F)).allowTreasureEnchantments()))
+                                .with(ItemEntry.builder(Items.BOOK).quality(3).apply(EnchantWithLevelsLootFunction.builder(registries, ConstantLootNumberProvider.create(30.0F))))
                 )
                 .pool(
                         LootPool.builder()
@@ -996,7 +1002,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.EYE_ARMOR_TRIM_SMITHING_TEMPLATE).weight(1).quality(4))
                 );
     }
-    public static LootTable.Builder strongholdCrossingChest() {
+    public static LootTable.Builder strongholdCrossingChest(RegistryWrapper.WrapperLookup registries) {
         return LootTable.builder()
                 .pool(
                         LootPool.builder()
@@ -1008,10 +1014,10 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.BREAD).weight(15).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.APPLE).weight(15).quality(0).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                                 .with(ItemEntry.builder(Items.IRON_PICKAXE).quality(1))
-                                .with(ItemEntry.builder(Items.BOOK).quality(3).apply(EnchantWithLevelsLootFunction.builder(ConstantLootNumberProvider.create(30.0F)).allowTreasureEnchantments()))
+                                .with(ItemEntry.builder(Items.BOOK).quality(3).apply(EnchantWithLevelsLootFunction.builder(registries, ConstantLootNumberProvider.create(30.0F))))
                 );
     }
-    public static LootTable.Builder strongholdLibraryChest() {
+    public static LootTable.Builder strongholdLibraryChest(RegistryWrapper.WrapperLookup registries) {
         return LootTable.builder()
                 .pool(
                         LootPool.builder()
@@ -1023,14 +1029,14 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(
                                         ItemEntry.builder(Items.BOOK)
                                                 .weight(10).quality(4)
-                                                .apply(EnchantWithLevelsLootFunction.builder(ConstantLootNumberProvider.create(30.0F)).allowTreasureEnchantments())
+                                                .apply(EnchantWithLevelsLootFunction.builder(registries, ConstantLootNumberProvider.create(30.0F)))
                                 )
                 )
                 .pool(
                         LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F)).with(ItemEntry.builder(Items.EYE_ARMOR_TRIM_SMITHING_TEMPLATE).weight(1))
                 );
     }
-    public static LootTable.Builder underwaterRuinBigChest() {
+    public static LootTable.Builder underwaterRuinBigChest(RegistryWrapper.WrapperLookup registries) {
         return LootTable.builder()
                 .pool(
                         LootPool.builder()
@@ -1038,7 +1044,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .bonusRolls(UniformLootNumberProvider.create(0f, 0.25f))
                                 .with(
                                         ItemEntry.builder(Items.BOOK)
-                                                .apply(EnchantWithLevelsLootFunction.builder(ConstantLootNumberProvider.create(25.0F)).allowTreasureEnchantments())
+                                                .apply(EnchantWithLevelsLootFunction.builder(registries, ConstantLootNumberProvider.create(25.0F)))
                                 )
                 )
                 .pool(
@@ -1054,10 +1060,10 @@ public class LuckyCharmChestHyperModifiers {
                         LootPool.builder()
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
                                 .with(ItemEntry.builder(Items.GOLDEN_APPLE).quality(3))
-                                .with(ItemEntry.builder(Items.BOOK).weight(5).quality(3).apply(EnchantRandomlyLootFunction.builder()))
+                                .with(ItemEntry.builder(Items.BOOK).weight(5).quality(3).apply(EnchantRandomlyLootFunction.builder(registries)))
                                 .with(ItemEntry.builder(Items.LEATHER_CHESTPLATE).quality(0))
                                 .with(ItemEntry.builder(Items.GOLDEN_HELMET).quality(1))
-                                .with(ItemEntry.builder(Items.FISHING_ROD).weight(5).quality(1).apply(EnchantRandomlyLootFunction.builder()))
+                                .with(ItemEntry.builder(Items.FISHING_ROD).weight(5).quality(1).apply(EnchantRandomlyLootFunction.builder(registries)))
                                 .with(
                                         ItemEntry.builder(Items.MAP)
                                                 .weight(10).quality(3)
@@ -1078,7 +1084,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(LuckyCharmItems.FORTUNED_TRAVELLER_SMITHING_TEMPLATE).quality(3))
                 );
     }
-    public static LootTable.Builder underwaterRuinSmallChest() {
+    public static LootTable.Builder underwaterRuinSmallChest(RegistryWrapper.WrapperLookup registries) {
         return LootTable.builder()
                 .pool(
                         LootPool.builder()
@@ -1086,7 +1092,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .bonusRolls(UniformLootNumberProvider.create(0f, 0.25f))
                                 .with(
                                         ItemEntry.builder(Items.BOOK)
-                                                .apply(EnchantRandomlyLootFunction.builder())
+                                                .apply(EnchantRandomlyLootFunction.builder(registries))
                                 )
                 )
                 .pool(
@@ -1103,7 +1109,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
                                 .with(ItemEntry.builder(Items.LEATHER_CHESTPLATE).quality(0))
                                 .with(ItemEntry.builder(Items.GOLDEN_HELMET).quality(1))
-                                .with(ItemEntry.builder(Items.FISHING_ROD).weight(5).quality(1).apply(EnchantRandomlyLootFunction.builder()))
+                                .with(ItemEntry.builder(Items.FISHING_ROD).weight(5).quality(1).apply(EnchantRandomlyLootFunction.builder(registries)))
                                 .with(
                                         ItemEntry.builder(Items.MAP)
                                                 .weight(5).quality(3)
@@ -1505,7 +1511,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.EMERALD).weight(1).quality(3).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F))))
                 );
     }
-    public static LootTable.Builder woodlandMansionChest() {
+    public static LootTable.Builder woodlandMansionChest(RegistryWrapper.WrapperLookup registries) {
         return LootTable.builder()
                 .pool(
                         LootPool.builder()
@@ -1519,7 +1525,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.CHAINMAIL_CHESTPLATE).weight(10).quality(1))
                                 .with(ItemEntry.builder(Items.DIAMOND_HOE).weight(15).quality(2))
                                 .with(ItemEntry.builder(Items.DIAMOND_CHESTPLATE).weight(5).quality(2))
-                                .with(ItemEntry.builder(Items.BOOK).weight(10).quality(2).apply(EnchantRandomlyLootFunction.builder()))
+                                .with(ItemEntry.builder(Items.BOOK).weight(10).quality(2).apply(EnchantRandomlyLootFunction.builder(registries)))
                 )
                 .pool(
                         LootPool.builder()
@@ -1550,7 +1556,7 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.VEX_ARMOR_TRIM_SMITHING_TEMPLATE).weight(1).quality(3))
                 );
     }
-    public static LootTable.Builder ruinedPortalChest() {
+    public static LootTable.Builder ruinedPortalChest(RegistryWrapper.WrapperLookup registries) {
         return LootTable.builder()
                 .pool(
                         LootPool.builder()
@@ -1562,15 +1568,15 @@ public class LuckyCharmChestHyperModifiers {
                                 .with(ItemEntry.builder(Items.FIRE_CHARGE).weight(40).quality(0))
                                 .with(ItemEntry.builder(Items.GOLDEN_APPLE).weight(15).quality(2))
                                 .with(ItemEntry.builder(Items.GOLD_NUGGET).weight(15).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(4.0F, 24.0F))))
-                                .with(ItemEntry.builder(Items.GOLDEN_SWORD).weight(15).quality(3).apply(EnchantRandomlyLootFunction.builder()))
-                                .with(ItemEntry.builder(Items.GOLDEN_AXE).weight(15).quality(3).apply(EnchantRandomlyLootFunction.builder()))
-                                .with(ItemEntry.builder(Items.GOLDEN_HOE).weight(15).quality(3).apply(EnchantRandomlyLootFunction.builder()))
-                                .with(ItemEntry.builder(Items.GOLDEN_SHOVEL).weight(15).quality(3).apply(EnchantRandomlyLootFunction.builder()))
-                                .with(ItemEntry.builder(Items.GOLDEN_PICKAXE).weight(15).quality(3).apply(EnchantRandomlyLootFunction.builder()))
-                                .with(ItemEntry.builder(Items.GOLDEN_BOOTS).weight(15).quality(3).apply(EnchantRandomlyLootFunction.builder()))
-                                .with(ItemEntry.builder(Items.GOLDEN_CHESTPLATE).weight(15).quality(3).apply(EnchantRandomlyLootFunction.builder()))
-                                .with(ItemEntry.builder(Items.GOLDEN_HELMET).weight(15).quality(3).apply(EnchantRandomlyLootFunction.builder()))
-                                .with(ItemEntry.builder(Items.GOLDEN_LEGGINGS).weight(15).quality(3).apply(EnchantRandomlyLootFunction.builder()))
+                                .with(ItemEntry.builder(Items.GOLDEN_SWORD).weight(15).quality(3).apply(EnchantRandomlyLootFunction.builder(registries)))
+                                .with(ItemEntry.builder(Items.GOLDEN_AXE).weight(15).quality(3).apply(EnchantRandomlyLootFunction.builder(registries)))
+                                .with(ItemEntry.builder(Items.GOLDEN_HOE).weight(15).quality(3).apply(EnchantRandomlyLootFunction.builder(registries)))
+                                .with(ItemEntry.builder(Items.GOLDEN_SHOVEL).weight(15).quality(3).apply(EnchantRandomlyLootFunction.builder(registries)))
+                                .with(ItemEntry.builder(Items.GOLDEN_PICKAXE).weight(15).quality(3).apply(EnchantRandomlyLootFunction.builder(registries)))
+                                .with(ItemEntry.builder(Items.GOLDEN_BOOTS).weight(15).quality(3).apply(EnchantRandomlyLootFunction.builder(registries)))
+                                .with(ItemEntry.builder(Items.GOLDEN_CHESTPLATE).weight(15).quality(3).apply(EnchantRandomlyLootFunction.builder(registries)))
+                                .with(ItemEntry.builder(Items.GOLDEN_HELMET).weight(15).quality(3).apply(EnchantRandomlyLootFunction.builder(registries)))
+                                .with(ItemEntry.builder(Items.GOLDEN_LEGGINGS).weight(15).quality(3).apply(EnchantRandomlyLootFunction.builder(registries)))
                                 .with(ItemEntry.builder(Items.GLISTERING_MELON_SLICE).weight(5).quality(2).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(4.0F, 12.0F))))
                                 .with(ItemEntry.builder(Items.GOLDEN_HORSE_ARMOR).weight(5).quality(1))
                                 .with(ItemEntry.builder(Items.LIGHT_WEIGHTED_PRESSURE_PLATE).weight(5).quality(0))

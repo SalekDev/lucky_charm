@@ -26,7 +26,7 @@ public class LuckyCharmChestLootTableDataPackProvider extends SimpleFabricLootTa
         super(output, registryLookup, LootContextTypes.CHEST);
     }
     @Override
-    public void accept(RegistryWrapper.WrapperLookup registryLookup, BiConsumer<RegistryKey<LootTable>, LootTable.Builder> consumer) {
+    public void accept(BiConsumer<RegistryKey<LootTable>, LootTable.Builder> lootTableBiConsumer) {
 
     }
 }

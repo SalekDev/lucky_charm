@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:wheat",
+    "minecraft:wheat",
+    "minecraft:bowl",
+    "minecraft:sugar",
+    "lucky_charm:three_leaf_clover",
+    "lucky_charm:three_leaf_clover",
+    "minecraft:milk_bucket"
+  ],
+  "result": {
+    "count": 1,
+    "id": "lucky_charm:lucky_charm_bowl"
+  }
+}

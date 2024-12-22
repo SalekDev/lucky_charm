@@ -2,13 +2,11 @@
   "item.lucky_charm.three_leaf_clover": "Trébol de tres hojas",
   "item.lucky_charm.four_leaf_clover": "Trébol de cuatro hojas",
   "item.lucky_charm.lucky_charm_bowl": "Cereal Lucky Charms",
-  "item.lucky_charm.fortuned_traveller_smithing_template": "Molde de herrería",
+  "item.lucky_charm.fortuned_traveller_smithing_template": "Aditamento del Viajero Afortunado",
   "item.lucky_charm.fortune_gem": "Gema de la Fortuna",
   "item.lucky_charm.smithing_template.fortuned_traveller.ingredients": "Gema de la fortuna",
   "item.lucky_charm.smithing_template.fortuned_traveller.additions_slot_description": "Colocá una gema de la fortuna",
   "item.lucky_charm.perks": "Aditamentos:",
-
-  "trim_pattern.lucky_charm.fortuned_traveller": "Aditamento del Viajero Afortunado",
 
   "itemgroup.lucky_charm": "Lucky Charm",
 

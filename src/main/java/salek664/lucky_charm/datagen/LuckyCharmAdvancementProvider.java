@@ -28,10 +28,10 @@ public class LuckyCharmAdvancementProvider extends FabricAdvancementProvider {
                 .display(
                         LuckyCharmItems.FOURLEAF_CLOVER,
                         Text.translatable(
-                                Util.createTranslationKey("advancements", new Identifier(LuckyCharm.MOD_ID, "adventure.four_leaf.title"))
+                                Util.createTranslationKey("advancements", Identifier.of(LuckyCharm.MOD_ID, "adventure.four_leaf.title"))
                         ),
                         Text.translatable(
-                                Util.createTranslationKey("advancements", new Identifier(LuckyCharm.MOD_ID, "adventure.four_leaf.description"))
+                                Util.createTranslationKey("advancements", Identifier.of(LuckyCharm.MOD_ID, "adventure.four_leaf.description"))
                         ),
                         null,
                         AdvancementFrame.TASK,
@@ -45,10 +45,10 @@ public class LuckyCharmAdvancementProvider extends FabricAdvancementProvider {
                 .display(
                         Blocks.CHEST,
                         Text.translatable(
-                                Util.createTranslationKey("advancements", new Identifier(LuckyCharm.MOD_ID, "adventure.get_lucky.title"))
+                                Util.createTranslationKey("advancements", Identifier.of(LuckyCharm.MOD_ID, "adventure.get_lucky.title"))
                         ),
                         Text.translatable(
-                                Util.createTranslationKey("advancements", new Identifier(LuckyCharm.MOD_ID, "adventure.get_lucky.description"))
+                                Util.createTranslationKey("advancements", Identifier.of(LuckyCharm.MOD_ID, "adventure.get_lucky.description"))
                         ),
                         null,
                         AdvancementFrame.GOAL,
@@ -63,10 +63,10 @@ public class LuckyCharmAdvancementProvider extends FabricAdvancementProvider {
                 .display(
                         LuckyCharmItems.FORTUNE_GEM,
                         Text.translatable(
-                                Util.createTranslationKey("advancements", new Identifier(LuckyCharm.MOD_ID, "adventure.extreme_luck.title"))
+                                Util.createTranslationKey("advancements", Identifier.of(LuckyCharm.MOD_ID, "adventure.extreme_luck.title"))
                         ),
                         Text.translatable(
-                                Util.createTranslationKey("advancements", new Identifier(LuckyCharm.MOD_ID, "adventure.extreme_luck.description"))
+                                Util.createTranslationKey("advancements", Identifier.of(LuckyCharm.MOD_ID, "adventure.extreme_luck.description"))
                         ),
                         null,
                         AdvancementFrame.CHALLENGE,

@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "minecraft:gold_ingot"
-    },
-    "C": {
-      "item": "minecraft:emerald_block"
-    },
-    "S": {
-      "item": "lucky_charm:fortuned_traveller_smithing_template"
-    }
+    "#": "minecraft:copper_ingot",
+    "C": "minecraft:emerald_block",
+    "S": "lucky_charm:fortuned_traveller_smithing_template"
   },
   "pattern": [
     "#S#",

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "lucky_charm:fortuned_traveller_smithing_template"
+        "recipe": "lucky_charm:fortuned_traveller_recipe_smithing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "lucky_charm:fortuned_traveller_smithing_template"
+      "lucky_charm:fortuned_traveller_recipe_smithing"
     ]
   }
 }

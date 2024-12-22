@@ -1,6 +1,6 @@
 package salek664.lucky_charm.loot.hyper;
 
-import net.fabricmc.fabric.api.loot.v2.LootTableSource;
+import net.fabricmc.fabric.api.loot.v3.LootTableSource;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
@@ -11,14 +11,15 @@ import net.minecraft.loot.function.SetStewEffectLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.registry.RegistryKey;
-import salek664.lucky_charm.LuckyCharm;
+import net.minecraft.registry.RegistryWrapper;
 import salek664.lucky_charm.item.LuckyCharmItems;
 
 import java.util.List;
 import java.util.Optional;
 
 public class LuckyCharmArchaeologyHyperModifiers {
-    public static Optional<LootTable> attemptReplace(RegistryKey<LootTable> key, LootTableSource source, boolean enabled, List<String> excepts) {
+    public static Optional<LootTable> attemptReplace(RegistryKey<LootTable> key, LootTableSource source, boolean enabled, List<String> excepts,
+                                                     RegistryWrapper.WrapperLookup registries) {
         String k = key.getValue().toUnderscoreSeparatedString();
         for (String except : excepts) {
             if (k.endsWith(except)) {

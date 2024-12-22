@@ -13,7 +13,7 @@ public class LuckyCharmDynamicRegistriesProvider extends FabricDynamicRegistryPr
     }
     @Override
     protected void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
-        entries.addAll(registries.getWrapperOrThrow(LuckyCharmPerks.PERKS_KEY));
+        entries.addAll(registries.getOrThrow(LuckyCharmPerks.PERKS_KEY));
     }
     @Override
     public String getName() {

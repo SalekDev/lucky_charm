@@ -21,7 +21,7 @@ public class LuckyCharmPotions {
     public static final RegistryEntry<Potion> CURSE_UNLUCK = registerPotion("curse_unluck", "unluck", new StatusEffectInstance(StatusEffects.UNLUCK, 6000, 3));
     private static RegistryEntry.Reference<Potion> registerPotion(String name, String basePotionName, StatusEffectInstance statusEffectInstance) {
         return Registry.registerReference(Registries.POTION,
-                new Identifier(LuckyCharm.MOD_ID, name), new Potion(basePotionName, statusEffectInstance));
+                Identifier.of(LuckyCharm.MOD_ID, name), new Potion(basePotionName, statusEffectInstance));
     }
     public static void registerPotionRecipes() {
         FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {

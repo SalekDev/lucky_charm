@@ -10,7 +10,7 @@ public class LuckyCharmCriteria {
     public static final LuckLootContainerCriterion PLAYER_OPENS_CHEST_WITH_LUCK = register("player_opens_chest_with_luck",
             new LuckLootContainerCriterion());
     public static <T extends Criterion<?>> T register(String id, T criterion) {
-        return Registry.register(Registries.CRITERION, new Identifier(LuckyCharm.MOD_ID, id), criterion);
+        return Registry.register(Registries.CRITERION, Identifier.of(LuckyCharm.MOD_ID, id), criterion);
     }
     public static void registerCriteria() {
         LuckyCharm.LOGGER.info("Registering advancements criteria for " + LuckyCharm.MOD_ID);

@@ -26,7 +26,7 @@ public abstract class WitchEntityMixin extends RaiderEntity implements RangedAtt
             at = @At(value = "STORE", ordinal = 3)
     )
     private RegistryEntry<Potion> addUnluckPotionAttack(RegistryEntry<Potion> registryEntry, LivingEntity target, float pullProgress) {
-        double targetLuck = target.getAttributeValue(EntityAttributes.GENERIC_LUCK);
+        double targetLuck = target.getAttributeValue(EntityAttributes.LUCK);
         if (target.getRandom().nextFloat() < 0.5f && !target.hasStatusEffect(StatusEffects.UNLUCK)) {
             return targetLuck <= 0 ? LuckyCharmPotions.UNLUCK :
                     targetLuck <= 2 ? LuckyCharmPotions.STRONG_UNLUCK : LuckyCharmPotions.CURSE_UNLUCK;
