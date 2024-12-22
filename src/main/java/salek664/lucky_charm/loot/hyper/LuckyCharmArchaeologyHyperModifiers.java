@@ -20,7 +20,7 @@ import java.util.Optional;
 public class LuckyCharmArchaeologyHyperModifiers {
     public static Optional<LootTable> attemptReplace(RegistryKey<LootTable> key, LootTableSource source, boolean enabled, List<String> excepts,
                                                      RegistryWrapper.WrapperLookup registries) {
-        String k = key.getValue().toUnderscoreSeparatedString();
+        String k = key.getValue().getPath();
         for (String except : excepts) {
             if (k.endsWith(except)) {
                 enabled = !enabled;

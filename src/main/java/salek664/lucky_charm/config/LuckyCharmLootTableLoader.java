@@ -3,9 +3,9 @@ package salek664.lucky_charm.config;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import oshi.util.tuples.Pair;
 import salek664.lucky_charm.loot.hyper.LuckyCharmArchaeologyHyperModifiers;
-import salek664.lucky_charm.loot.hyper.LuckyCharmChestHyperModifiers;
+import salek664.lucky_charm.loot.hyper.LuckyCharmContainerHyperModifiers;
 import salek664.lucky_charm.loot.non_hyper.LuckyCharmArcheologyLootTableModifiers;
-import salek664.lucky_charm.loot.non_hyper.LuckyCharmChestLootTableModifiers;
+import salek664.lucky_charm.loot.non_hyper.LuckyCharmContainerLootTableModifiers;
 
 import java.util.List;
 import java.util.Map;
@@ -19,11 +19,11 @@ public class LuckyCharmLootTableLoader {
         LootTableEvents.REPLACE.register((key, original, source, registries) -> {
             if (doHyperLoot) {
                 return LuckyCharmArchaeologyHyperModifiers.attemptReplace(key, source, replaceArchaeologyLootTables, excepts, registries)
-                        .orElse(LuckyCharmChestHyperModifiers.attemptReplace(key, source, replaceChestLootTables, excepts, registries)
+                        .orElse(LuckyCharmContainerHyperModifiers.attemptReplace(key, source, replaceChestLootTables, excepts, registries)
                                 .orElse(original));
             } else {
                 return LuckyCharmArcheologyLootTableModifiers.attemptReplace(key, source, replaceArchaeologyLootTables, excepts, registries)
-                        .orElse(LuckyCharmChestLootTableModifiers.attemptReplace(key, source, replaceChestLootTables, excepts, registries)
+                        .orElse(LuckyCharmContainerLootTableModifiers.attemptReplace(key, source, replaceChestLootTables, excepts, registries)
                                 .orElse(original));
             }
         });
