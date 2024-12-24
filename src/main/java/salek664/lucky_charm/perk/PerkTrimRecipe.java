@@ -14,8 +14,6 @@ import net.minecraft.component.type.EquippableComponent;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.RegistryByteBuf;

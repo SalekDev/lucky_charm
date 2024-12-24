@@ -14,7 +14,7 @@ import salek664.lucky_charm.LuckyCharm;
 import java.util.Optional;
 
 public class LuckyCharmPerks {
-    public static final RegistryKey<Registry<AttributeEquipmentPerk>> PERKS_KEY = RegistryKey.ofRegistry( Identifier.of("perks"));
+    public static final RegistryKey<Registry<AttributeEquipmentPerk>> PERKS_KEY = RegistryKey.ofRegistry(Identifier.of(LuckyCharm.MOD_ID, "perks"));
     public static final RegistryKey<AttributeEquipmentPerk> FORTUNED_TRAVELLER_PERK = RegistryKey.of(PERKS_KEY, Identifier.of(LuckyCharm.MOD_ID, "fortuned_traveller"));
     public static final Text FORTUNED_TRAVELLER_INGREDIENTS_TEXT = Text.translatable(
                     Util.createTranslationKey("item", Identifier.of(LuckyCharm.MOD_ID, "smithing_template.fortuned_traveller.ingredients"))
