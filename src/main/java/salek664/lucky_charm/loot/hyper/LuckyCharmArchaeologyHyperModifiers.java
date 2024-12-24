@@ -11,7 +11,6 @@ import net.minecraft.loot.function.SetStewEffectLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.registry.RegistryKey;
-import salek664.lucky_charm.LuckyCharm;
 import salek664.lucky_charm.item.LuckyCharmItems;
 
 import java.util.List;

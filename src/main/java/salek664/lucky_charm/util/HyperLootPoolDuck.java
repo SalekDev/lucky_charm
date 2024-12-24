@@ -1,7 +1,6 @@
 package salek664.lucky_charm.util;
 
 import it.unimi.dsi.fastutil.floats.FloatArrayList;
-import it.unimi.dsi.fastutil.ints.IntArrayList;
 import org.spongepowered.asm.mixin.Unique;
 
 public interface HyperLootPoolDuck {

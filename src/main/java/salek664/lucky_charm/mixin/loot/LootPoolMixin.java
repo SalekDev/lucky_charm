@@ -21,7 +21,6 @@ import net.minecraft.loot.LootPool;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.entry.LootPoolEntry;
 import org.apache.commons.lang3.mutable.MutableInt;
-import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
