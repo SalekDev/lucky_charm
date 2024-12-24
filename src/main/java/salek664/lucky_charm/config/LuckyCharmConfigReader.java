@@ -19,7 +19,7 @@ public class LuckyCharmConfigReader implements IMixinConfigPlugin {
     private static final String TEXT = "[ConfigReader]: ";
     private static final ImmutableList.Builder<String> EXCEPT = ImmutableList.builder();
     public enum Options {
-        HyperLoot(true), Chest(true), Archaeology(true), TrialChambers(true);
+        HyperLoot(true), Chest(true), Archaeology(true), TrialChambersVaults(true);
         private boolean isEnabled;
         Options(boolean isEnabled) {
             this.isEnabled = isEnabled;
@@ -36,7 +36,7 @@ public class LuckyCharmConfigReader implements IMixinConfigPlugin {
                         "doHyperLoot: true",
                         "replaceChestLootTables: true",
                         "replaceArchaeologyLootTables: true",
-                        "replaceTrialChambersLootTables: true",
+                        "replaceTrialChambersVaultsLootTables: true",
                         "exceptions: []"
                 ), StandardCharsets.UTF_8, StandardOpenOption.WRITE);
                 LuckyCharm.LOGGER.info(TEXT + "Successfully wrote config file");
@@ -132,7 +132,7 @@ public class LuckyCharmConfigReader implements IMixinConfigPlugin {
     }
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        boolean isTarget = Objects.equals(mixinClassName, "salek664.lucky_charm.mixin.LootPool$BuilderMixin")
+        boolean isTarget = Objects.equals(mixinClassName, "salek664.lucky_charm.mixin.loot.LootPool$BuilderMixin")
                 || Objects.equals(mixinClassName, "salek664.lucky_charm.mixin.loot.LootPoolMixin");
         return !isTarget || Options.HyperLoot.isEnabled;
     }
