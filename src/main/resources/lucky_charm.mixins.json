@@ -3,6 +3,8 @@
   "package": "salek664.lucky_charm.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "client.screen.PackScreenMixin",
+    "client.screen.ResourcePackOrganizerAccessor",
     "entity.ElderGuardianMixin",
     "entity.WitchEntityMixin",
     "item.ItemStackMixin",
@@ -10,7 +12,8 @@
     "loot.LeafEntryAccessor",
     "loot.LootPool$BuilderMixin",
     "loot.LootPoolMixin",
-    "loot.criteria.PlayerGeneratesContainerLootCriterionMixin"
+    "loot.criteria.PlayerGeneratesContainerLootCriterionMixin",
+    "registry.SerializableRegistriesAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

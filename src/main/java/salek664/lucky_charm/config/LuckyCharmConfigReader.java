@@ -132,7 +132,7 @@ public class LuckyCharmConfigReader implements IMixinConfigPlugin {
     }
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        boolean isTarget = Objects.equals(mixinClassName, "salek664.lucky_charm.mixin.LootPool$BuilderMixin")
+        boolean isTarget = Objects.equals(mixinClassName, "salek664.lucky_charm.mixin.loot.LootPool$BuilderMixin")
                 || Objects.equals(mixinClassName, "salek664.lucky_charm.mixin.loot.LootPoolMixin");
         return !isTarget || Options.HyperLoot.isEnabled;
     }

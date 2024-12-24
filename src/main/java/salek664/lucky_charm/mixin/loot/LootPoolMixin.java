@@ -21,7 +21,6 @@ import net.minecraft.loot.LootPool;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.entry.LootPoolEntry;
 import org.apache.commons.lang3.mutable.MutableInt;
-import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -112,7 +111,7 @@ import java.util.function.Function;
     Here they are just used to calculate the new weights.
  */
 
-@Mixin(LootPool.class)
+@Mixin(value = LootPool.class, priority = 800)
 public abstract class LootPoolMixin implements HyperLootPoolDuck {
     @Unique
     public FloatArrayList positiveDelta = FloatArrayList.of();
@@ -140,28 +139,27 @@ public abstract class LootPoolMixin implements HyperLootPoolDuck {
     )
     private static Codec<LootPool> modifyCodec(Codec<LootPool> original) {
         return Codec.either(
-            original,
-            RecordCodecBuilder.<LootPool>create(
-                instance -> instance.group(
-                    MapCodec.assumeMapUnsafe(original).forGetter(Function.identity()),
-                    Codec.FLOAT.listOf().fieldOf("delta+").forGetter(pool -> ((HyperLootPoolDuck) pool).getPositiveDelta()),
-                    Codec.FLOAT.listOf().fieldOf("delta-").forGetter(pool -> ((HyperLootPoolDuck) pool).getNegativeDelta()),
-                    Codec.FLOAT.fieldOf("qual.delta+").forGetter(pool -> ((HyperLootPoolDuck) pool).getQualDotDeltaPositive()),
-                    Codec.FLOAT.fieldOf("qual.delta-").forGetter(pool -> ((HyperLootPoolDuck) pool).getQualDotDeltaPositive()),
-                    Codec.INT.fieldOf("qual.weight").forGetter(pool -> ((HyperLootPoolDuck) pool).getQualDotWeight()),
-                    Codec.INT.fieldOf("weight_sum").forGetter(pool -> ((HyperLootPoolDuck) pool).getWeightSum()),
-                    Codec.INT.fieldOf("max_quality").forGetter(pool -> ((HyperLootPoolDuck) pool).getMaxQuality()),
-                    Codec.INT.fieldOf("min_quality").forGetter(pool -> ((HyperLootPoolDuck) pool).getMinQuality())
-                ).apply(instance, (o, pd, nd, m, n, w, s, x, u) -> o)
-            )
+                original, RecordCodecBuilder.<LootPool>create(
+                        instance -> instance.group(
+                                MapCodec.assumeMapUnsafe(original).forGetter(Function.identity()),
+                                Codec.FLOAT.listOf().fieldOf("delta+").forGetter(pool -> ((HyperLootPoolDuck) pool).getPositiveDelta()),
+                                Codec.FLOAT.listOf().fieldOf("delta-").forGetter(pool -> ((HyperLootPoolDuck) pool).getNegativeDelta()),
+                                Codec.FLOAT.fieldOf("qual.delta+").forGetter(pool -> ((HyperLootPoolDuck) pool).getQualDotDeltaPositive()),
+                                Codec.FLOAT.fieldOf("qual.delta-").forGetter(pool -> ((HyperLootPoolDuck) pool).getQualDotDeltaPositive()),
+                                Codec.INT.fieldOf("qual.weight").forGetter(pool -> ((HyperLootPoolDuck) pool).getQualDotWeight()),
+                                Codec.INT.fieldOf("weight_sum").forGetter(pool -> ((HyperLootPoolDuck) pool).getWeightSum()),
+                                Codec.INT.fieldOf("max_quality").forGetter(pool -> ((HyperLootPoolDuck) pool).getMaxQuality()),
+                                Codec.INT.fieldOf("min_quality").forGetter(pool -> ((HyperLootPoolDuck) pool).getMinQuality())
+                        ).apply(instance, (o, pd, nd, m, n, w, s, x, u) -> o)
+                )
         ).comapFlatMap(
-            either -> either.left()
-                .or(either::right)
-                .map(DataResult::success)
-                .orElseGet(
-                    () -> DataResult.error(() -> "No Codec found for LootPool")
-                ),
-            Either::left
+                either -> either.left()
+                        .or(either::right)
+                        .map(DataResult::success)
+                        .orElseGet(
+                                () -> DataResult.error(() -> "No Codec found for LootPool")
+                        ),
+                Either::left
         );
     }
     @Unique
