@@ -19,7 +19,7 @@ public class PerkSmithingTemplate extends SmithingTemplateItem {
                                 List<Identifier> emptyAdditionsSlotTextures,
                                 RegistryKey<AttributeEquipmentPerk> perk,
                                 FeatureFlag... requiredFeatures) {
-        super(appliesToText, ingredientsText, titleText, baseSlotDescriptionText, additionsSlotDescriptionText, emptyBaseSlotTextures, emptyAdditionsSlotTextures, requiredFeatures);
+        super(appliesToText, ingredientsText, titleText, baseSlotDescriptionText, additionsSlotDescriptionText, emptyBaseSlotTextures, emptyAdditionsSlotTextures);
         this.perk = perk;
     }
 }
